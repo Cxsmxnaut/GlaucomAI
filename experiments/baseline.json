@@ -1,0 +1,65 @@
+{
+  "release_tag": "v0.1.0",
+  "checkpoint_url": "https://github.com/Cxsmxnaut/GlaucomAI/releases/download/v0.1.0/best_model.pth",
+  "checkpoint_sha256": "fcbcc55c7349cf602757972dbf69fadf2cd76dd58b169c3ab0731aea8fc11ce6",
+  "run_date": "2026-11-07",
+  "training_device": "Apple Silicon MPS (local Mac; Colab training workflow also supplied)",
+  "architecture": "efficientnet_b0",
+  "classes": [
+    "non_referable",
+    "referable"
+  ],
+  "selected_epoch": 11,
+  "threshold": 0.39829668402671814,
+  "training_samples": 8000,
+  "validation_metrics": {
+    "samples": 770,
+    "true_positive": 339,
+    "true_negative": 271,
+    "false_positive": 114,
+    "false_negative": 46,
+    "sensitivity": 0.8805194805194805,
+    "specificity": 0.7038961038961039,
+    "accuracy": 0.7922077922077922
+  },
+  "dataset_provenance": {
+    "dataset": "deathtrooper/glaucoma-dataset-eyepacs-airogs-light-v2/versions/4",
+    "source_url": "https://www.kaggle.com/datasets/deathtrooper/glaucoma-dataset-eyepacs-airogs-light-v2/versions/4",
+    "counts": {
+      "train/non_referable": 4000,
+      "train/referable": 4000,
+      "val/non_referable": 385,
+      "val/referable": 385,
+      "test/non_referable": 385,
+      "test/referable": 385
+    },
+    "split_policy": "Preserve the dataset publisher's train/validation/test splits.",
+    "patient_separation": "Not independently verified. File-hash disjointness does not establish patient disjointness.",
+    "label_mapping": {
+      "NRG": "non_referable",
+      "RG": "referable"
+    }
+  },
+  "test_evaluation": {
+    "split": "test",
+    "threshold": 0.39829668402671814,
+    "metrics": {
+      "samples": 770,
+      "true_positive": 354,
+      "true_negative": 253,
+      "false_positive": 132,
+      "false_negative": 31,
+      "sensitivity": 0.9194805194805195,
+      "specificity": 0.6571428571428571,
+      "accuracy": 0.7883116883116883
+    },
+    "checkpoint_sha256": "fcbcc55c7349cf602757972dbf69fadf2cd76dd58b169c3ab0731aea8fc11ce6",
+    "warmup_ms": 77.73195800109534,
+    "median_pipeline_ms": 68.41954150058882,
+    "p95_pipeline_ms": 72.92462499935937,
+    "sensitivity_target_met": true,
+    "latency_target_met": true,
+    "note": "Latency includes file decoding, preprocessing and CPU forward pass, not browser transport or UI rendering. Patient separation must be verified by the dataset owner. Model scores are not calibrated clinical probabilities."
+  },
+  "clinical_validation": "Not performed. Research prototype only."
+}
