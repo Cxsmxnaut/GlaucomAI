@@ -48,7 +48,7 @@ Read the dataset's terms and linked original-source conditions before use or red
 - Held-out evaluation reports the confusion matrix, sensitivity, specificity, accuracy, model hash, and warmed CPU pipeline median/p95 latency. Cold warmup is reported separately. Latency includes decoding/preprocessing/inference, and excludes browser transfer/rendering.
 - The dashboard uses real softmax outputs from a loaded checkpoint. A missing or incompatible checkpoint stops inference; there is no random-score fallback.
 
-**≥88% sensitivity and ≤2-second latency are goals, not established performance claims.** The notebook reports whether each target is met in that run. A high sensitivity alone can hide excessive false positives; inspect specificity and the confusion matrix too. See [MODEL_CARD.md](MODEL_CARD.md) for limitations.
+**≥88% sensitivity and ≤2-second latency are targets to check in each run, not guaranteed performance.** The recorded baseline is below. A high sensitivity alone can hide excessive false positives; inspect specificity and the confusion matrix too. See [MODEL_CARD.md](MODEL_CARD.md) for limitations.
 
 ## Recorded baseline
 

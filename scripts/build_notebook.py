@@ -58,7 +58,7 @@ def build():
                for p in sorted((ROOT / "glaucoma").glob("*.py"))}
     for name in ("train.py", "evaluate.py", "prepare_data.py"):
         sources[name] = (ROOT / name).read_text()
-    code("import json\nimport os\nfrom pathlib import Path\n"
+    code("# @title Initialize the GlaucomAI project\nimport json\nimport os\nfrom pathlib import Path\n"
          "PROJECT = Path('/content/GlaucomAI') if Path('/content').exists() else Path.cwd() / '.glaucomai-notebook'\n"
          "PROJECT.mkdir(parents=True, exist_ok=True)\n"
          + "SOURCES = json.loads(" + repr(json.dumps(sources, sort_keys=True)) + ")\n"
@@ -68,6 +68,7 @@ def build():
          + "os.chdir(PROJECT)\n"
          + "if str(PROJECT) not in sys.path:\n    sys.path.insert(0, str(PROJECT))\n"
          + "print('Project ready:', PROJECT)")
+    cells[-1]["metadata"] = {"cellView": "form", "jupyter": {"source_hidden": True}}
     markdown("""
     ## 3. Download the Kaggle dataset
     We use **EyePACS-AIROGS-light-V2, version 4**. Its publisher supplies train, validation, and test folders.
