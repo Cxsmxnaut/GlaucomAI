@@ -68,9 +68,15 @@ def test_widget_upload_analysis_invalid_replacement_and_clear(monkeypatch):
     Image.new("RGB", (50, 50)).save(buffer, format="PNG")
 
     def upload(content):
-        dashboard["uploader"].value = ({"name": "retina.png", "type": "image/png",
-                                      "size": len(content), "content": memoryview(content),
-                                      "last_modified": datetime.now(timezone.utc)},)
+        uploader = dashboard["uploader"]
+        if isinstance(uploader.value, dict):
+            uploader.metadata = [{"name": "retina.png", "type": "image/png", "size": len(content)}]
+            uploader.data = [content]
+            uploader._counter += 1
+        else:
+            uploader.value = ({"name": "retina.png", "type": "image/png",
+                               "size": len(content), "content": memoryview(content),
+                               "last_modified": datetime.now(timezone.utc)},)
 
     upload(buffer.getvalue())
     assert not dashboard["analyze"].disabled
@@ -79,5 +85,5 @@ def test_widget_upload_analysis_invalid_replacement_and_clear(monkeypatch):
     upload(b"invalid replacement")
     assert dashboard["analyze"].disabled
     dashboard["reset"].click()
-    assert dashboard["uploader"].value == ()
+    assert not dashboard["uploader"].value
     assert dashboard["analyze"].disabled
