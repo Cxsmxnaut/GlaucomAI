@@ -83,6 +83,8 @@ def display_assistant(model_path="models/best_model.pth"):
     """Call once in Colab/Jupyter after training; session memory only."""
     torch.set_num_threads(2)
     loaded = load_model(model_path)
+    if loaded.metadata.get("label_semantics") == "mixed_dataset_binary_research_labels":
+        raise ModelError("This experimental checkpoint mixes dataset labels. Use the sequential notebook's research results; it cannot be displayed as a referral score.")
     display(HTML(STYLE + f"""<div class="gai"><div class="hero">
 <div class="eyebrow">GlaucomAI / AI + Health</div>
 <h1>A clearer view. An earlier signal.</h1>

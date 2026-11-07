@@ -56,7 +56,7 @@ def build():
     """)
     sources = {p.relative_to(ROOT).as_posix(): p.read_text()
                for p in sorted((ROOT / "glaucoma").glob("*.py"))}
-    for name in ("train.py", "evaluate.py", "prepare_data.py"):
+    for name in ("train.py", "evaluate.py", "prepare_data.py", "sequential_train.py"):
         sources[name] = (ROOT / name).read_text()
     code("# @title Initialize the GlaucomAI project\nimport json\nimport os\nfrom pathlib import Path\n"
          "PROJECT = Path('/content/GlaucomAI') if Path('/content').exists() else Path.cwd() / '.glaucomai-notebook'\n"

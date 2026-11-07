@@ -6,6 +6,10 @@
 
 **Train your own model:** [![Open training in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Cxsmxnaut/GlaucomAI/blob/main/notebooks/GlaucomAI_Colab.ipynb)
 
+**Train across three datasets:** [![Open sequential training in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Cxsmxnaut/GlaucomAI/blob/main/notebooks/GlaucomAI_Sequential.ipynb)
+
+The sequential notebook continues the same model through **EyePACS → ACRIMA → PAPILA**, saving each stage and replaying earlier training examples to reduce forgetting. All three Kaggle listings scored 10/10 for usability when checked on November 7, 2026. This score measures dataset packaging, not clinical reliability. See [dataset selection, original sources, terms, and split rules](DATASETS.md). Mixed dataset labels are experimental and are not shown as referral scores in the original demo.
+
 GlaucomAI is an AI + Health hackathon research prototype. It uses an ImageNet-pretrained EfficientNet-B0 with a two-class head to learn **non-referable vs. referable glaucoma** from retinal photographs. It includes training, held-out evaluation, a side-by-side image/results dashboard, and export of trained artifacts.
 
 **Not a diagnosis.** This prototype is not clinically validated. Model scores are not calibrated disease probabilities. Non-referable does not mean healthy. A qualified eye-care professional must interpret retinal findings. The classifier does not measure optic disc cupping or cup-to-disc ratio.

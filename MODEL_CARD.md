@@ -41,3 +41,7 @@ Use with de-identified research images for interactive demonstrations and educat
 Checkpoints contain architecture, class order, preprocessing, threshold, selected epoch, training sample count, seed, validation metrics, and data provenance when available. Evaluation records the checkpoint SHA-256 hash. The export archive also includes installed package versions.
 
 The dashboard writes no uploaded files, uses no database, and keeps images in runtime memory until cleared. Notebook outputs may include images if saved. Clear uploads and outputs before sharing. Dataset use and redistribution remain subject to the Kaggle page and original-source terms; no dataset or credentials belong in GitHub.
+
+## Sequential multi-dataset experiment
+
+An additional Colab workflow continues the same frozen-backbone classifier head through EyePACS, ACRIMA, and PAPILA with bounded replay. See [DATASETS.md](DATASETS.md) for pinned versions, original papers, license conditions, explicit label mappings, patient grouping, and leakage checks. ACRIMA/PAPILA glaucoma labels are not equivalent to EyePACS referral labels. Adapted checkpoints carry `label_semantics=mixed_dataset_binary_research_labels`; the referral dashboard rejects them. All stage checkpoints are locked before evaluation on the new test splits. The existing EyePACS test has been inspected previously. Training on additional sources does not establish prospective clinical validity or regulatory suitability.
