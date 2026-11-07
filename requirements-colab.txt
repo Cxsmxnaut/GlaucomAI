@@ -1,5 +1,5 @@
-# Keep Colab's matched, GPU-enabled torch/torchvision pair.
+# Keep Colab's matched torch/torchvision pair and already-loaded widget major version.
 kagglehub>=0.3.13,<1
-ipywidgets>=8,<9
+ipywidgets>=7.7,<9
 matplotlib>=3.9,<4
 Pillow>=11,<13

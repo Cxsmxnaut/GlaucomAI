@@ -36,6 +36,15 @@ def test_ui_shows_real_scores_and_label_limitations():
     assert "does not mean healthy" in html
 
 
+def test_upload_normalizes_colab_7_and_widgets_8_formats():
+    from glaucoma.notebook_ui import uploaded_file
+    content = b"same image bytes"
+    assert uploaded_file({"retina.png": {"metadata": {"name": "retina.png"}, "content": content}}) == ("retina.png", content)
+    assert uploaded_file(({"name": "retina.png", "content": memoryview(content)},)) == ("retina.png", content)
+    assert uploaded_file({}) is None
+    assert uploaded_file(()) is None
+
+
 def test_widget_upload_analysis_invalid_replacement_and_clear(monkeypatch):
     from datetime import datetime, timezone
     from io import BytesIO

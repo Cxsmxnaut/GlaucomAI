@@ -42,6 +42,17 @@ of disease. Non-referable does not mean healthy. A qualified eye-care profession
 retinal findings. The app does not check whether an upload is a fundus photograph.</div>"""
 
 
+def uploaded_file(value):
+    """Normalize both Colab's ipywidgets 7 mapping and ipywidgets 8 sequence."""
+    if not value:
+        return None
+    if isinstance(value, dict):
+        name, file = next(iter(value.items()))
+        return name, bytes(file["content"])
+    file = value[0]
+    return file["name"], bytes(file["content"])
+
+
 def image_data_url(image):
     preview = image.copy()
     preview.thumbnail((800, 800))
@@ -97,9 +108,9 @@ def display_assistant(model_path="models/best_model.pth"):
         clear_image()
         if not uploader.value:
             return
-        file = uploader.value[0]
         try:
-            state["image"] = decode_image(bytes(file["content"]), file["name"])
+            name, content = uploaded_file(uploader.value)
+            state["image"] = decode_image(content, name)
             analyze.disabled = False
             with output:
                 display(HTML(STYLE + f'<div class="gai"><p class="pill">Image decoded · ready to analyze</p><div class="image"><img src="{image_data_url(state["image"])}" alt="Uploaded image preview"/></div></div>'))
@@ -126,7 +137,14 @@ def display_assistant(model_path="models/best_model.pth"):
 
     def reset_upload(button):
         clear_image()
-        uploader.value = ()
+        if isinstance(uploader.value, dict):
+            # ipywidgets 7 computes its read-only value from these synced traits.
+            uploader.metadata = []
+            uploader.data = []
+            uploader._counter = 0
+            uploader.set_trait("value", {})
+        else:
+            uploader.value = ()
 
     uploader.observe(uploaded, names="value")
     analyze.on_click(run_analysis)

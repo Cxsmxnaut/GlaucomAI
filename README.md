@@ -25,6 +25,8 @@ For **training**:
 
 The notebook contains the project source, so it also works when uploaded directly through **File → Upload notebook**. It needs no web server, tunnel, or separate hosting account. The dashboard runs inside the notebook. [Colab GPU availability and runtime lifetimes vary](https://research.google.com/colaboratory/faq.html); Colab is interactive compute, not permanent app hosting.
 
+The upload controls support both ipywidgets 7 (preloaded in some Colab runtimes) and ipywidgets 8. Setup preserves the preloaded widget major version, avoiding an in-session upgrade that would leave the running kernel and installed files out of sync.
+
 To show an already-trained model in a new runtime, run notebook steps **1–2**, upload your trusted `best_model.pth` to `/content/GlaucomAI/models/` using the Files sidebar, and run **step 8**. You can skip downloading the dataset and retraining.
 
 ## Dataset and labels

@@ -43,7 +43,7 @@ def build():
     import subprocess
     import sys
     subprocess.run([sys.executable, "-m", "pip", "install", "-q",
-                    "kagglehub>=0.3.13,<1", "ipywidgets>=8,<9", "matplotlib>=3.9,<4", "Pillow>=11,<13"], check=True)
+                    "kagglehub>=0.3.13,<1", "ipywidgets>=7.7,<9", "matplotlib>=3.9,<4", "Pillow>=11,<13"], check=True)
     import torch
     import torchvision
     print("PyTorch:", torch.__version__, "| Torchvision:", torchvision.__version__)
