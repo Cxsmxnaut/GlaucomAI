@@ -70,6 +70,12 @@ This checkpoint exceeded the sensitivity target **on this test split**, with sub
 
 The trained checkpoint and artifact archive are separate downloads in [release v0.1.0](https://github.com/Cxsmxnaut/GlaucomAI/releases/tag/v0.1.0). The demo notebook verifies the checkpoint's SHA-256 before loading it.
 
+### Completed Google Colab run
+
+A second 12-epoch run completed **inside Google Colab on a Tesla T4 GPU** on November 7, 2026, using the same Kaggle splits. Its held-out test sensitivity was **91.69%**, specificity **65.19%**, and accuracy **78.44%** (32 false negatives, 134 false positives). CPU pipeline median/p95 on that Colab VM were **47.9/101.3 ms**. See [the Colab run record](experiments/colab_t4.json) for the notebook revision, selected epoch, threshold, and checkpoint hash.
+
+The trained artifact archive was created in Colab. Automatic export is currently blocked: the browser security policy rejected the generated `data:` download link, and the standard Colab download produced no file through the browser tool. The published demo continues to load the verified v0.1.0 checkpoint until a supported export of the Colab archive is available. Colab runtime files are temporary; the training notebook can reproduce this run in a new runtime.
+
 ## Run locally
 
 Python 3.11 or newer is recommended. CUDA is used automatically when available; CPU training is slower. Apple Silicon can use `--device mps` explicitly.

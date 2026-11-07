@@ -19,6 +19,9 @@ def main():
     parser.add_argument("--tag", default="v0.1.0")
     parser.add_argument("--training-device", required=True)
     parser.add_argument("--date", required=True, help="User-local run date, YYYY-MM-DD")
+    parser.add_argument("--environment-file", type=Path,
+                        help="Use the training runtime's exported pip freeze instead of the local environment.")
+    parser.add_argument("--notebook-url", help="Exact Colab notebook URL used for this run.")
     args = parser.parse_args()
     model = ROOT / "models/best_model.pth"
     checkpoint_hash = sha256(model.read_bytes()).hexdigest()
@@ -39,9 +42,13 @@ def main():
         "test_evaluation": report,
         "clinical_validation": "Not performed. Research prototype only.",
     }
+    if args.notebook_url:
+        baseline["training_notebook_url"] = args.notebook_url
     (ROOT / "experiments").mkdir(exist_ok=True)
     (ROOT / "experiments/baseline.json").write_text(json.dumps(baseline, indent=2) + "\n")
-    versions = subprocess.run([sys.executable, "-m", "pip", "freeze"], check=True, capture_output=True, text=True).stdout
+    versions = (args.environment_file.read_text() if args.environment_file else
+                subprocess.run([sys.executable, "-m", "pip", "freeze"], check=True,
+                               capture_output=True, text=True).stdout)
     archive = ROOT / "GlaucomAI_trained_artifacts.zip"
     with zipfile.ZipFile(archive, "w", zipfile.ZIP_DEFLATED) as bundle:
         for name in ["models/best_model.pth", "models/best_model.history.json", "reports/evaluation.json",

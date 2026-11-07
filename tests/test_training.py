@@ -6,6 +6,22 @@ from glaucoma.pipeline import build_model, preprocessing
 from train import extract_features
 
 
+def test_notebook_process_logs_and_errors_are_visible(capsys):
+    import subprocess
+    import sys
+
+    import pytest
+
+    from glaucoma.runtime import run_logged
+
+    run_logged([sys.executable, "-c", "print('epoch log is visible')"])
+    assert "epoch log is visible" in capsys.readouterr().out
+    with pytest.raises(subprocess.CalledProcessError) as failure:
+        run_logged([sys.executable, "-c", "import sys; print('training failed'); sys.exit(7)"])
+    assert failure.value.returncode == 7
+    assert "training failed" in capsys.readouterr().out
+
+
 def test_cached_features_match_full_model_and_allow_head_training():
     torch.set_num_threads(2)
     torch.manual_seed(42)

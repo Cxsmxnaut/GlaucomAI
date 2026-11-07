@@ -28,6 +28,8 @@ The ≥88% sensitivity and ≤2-second inference values in the PRD are **targets
 
 The initial recorded run trained on 8,000 images for 12 epochs using Apple MPS on November 7, 2026. Validation selected epoch 11 at threshold 0.3982966840. On 770 held-out test images, sensitivity was **91.95%**, specificity **65.71%**, and accuracy **78.83%**. There were **31 false negatives** and **132 false positives**. CPU pipeline median/p95 were **68.4/72.9 ms** on the local Mac. The test result meets the recall target on this split, while showing a substantial false-positive rate. This does not establish clinical usefulness or end-to-end browser latency. Exact metrics, counts, source provenance, and checkpoint hash are in [experiments/baseline.json](experiments/baseline.json).
 
+A subsequent 12-epoch run completed inside Google Colab on a Tesla T4 GPU. On the same held-out split, sensitivity was **91.69%**, specificity **65.19%**, and accuracy **78.44%**, with **32 false negatives** and **134 false positives**. Validation selected epoch 11 and threshold 0.4288072586. Its checkpoint hash and measured CPU latency are in [experiments/colab_t4.json](experiments/colab_t4.json). This repeat run did not tune weights or thresholds on test images. Its archive has been created in Colab and is awaiting a supported export; the released v0.1.0 checkpoint remains the earlier local baseline.
+
 The CPU timing report covers image decoding, preprocessing, and a forward pass after warmup. It excludes model-loading time, browser transfer and rendering. It cannot establish the full click-to-result requirement on another machine. Small datasets and domain shifts can cause large performance changes.
 
 ## Intended use and limitations

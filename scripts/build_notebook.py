@@ -115,11 +115,12 @@ def build():
     Meeting the validation target does **not** mean the model will meet it on the test set or on new patients.
     """)
     code("""
+    from glaucoma.runtime import run_logged
     EPOCHS = 12
     BATCH_SIZE = 32
-    subprocess.run([sys.executable, "-u", "train.py", "--data", str(data_path),
+    run_logged([sys.executable, "-u", "train.py", "--data", str(data_path),
                     "--epochs", str(EPOCHS), "--batch-size", str(BATCH_SIZE),
-                    "--output", "models/best_model.pth"], check=True)
+                    "--output", "models/best_model.pth"])
     """)
     markdown("""
     ## 6. Inspect training
@@ -147,8 +148,8 @@ def build():
     need a separate end-to-end check. CPU performance here describes this Colab machine, not every laptop.
     """)
     code("""
-    subprocess.run([sys.executable, "-u", "evaluate.py", "--data", str(data_path),
-                    "--model", "models/best_model.pth", "--output", "reports/evaluation.json"], check=True)
+    run_logged([sys.executable, "-u", "evaluate.py", "--data", str(data_path),
+                "--model", "models/best_model.pth", "--output", "reports/evaluation.json"])
     report = json.loads(Path("reports/evaluation.json").read_text())
     metrics = report["metrics"]
     print(f"TEST sensitivity: {metrics['sensitivity']:.1%} | specificity: {metrics['specificity']:.1%}")
@@ -289,14 +290,16 @@ def build_demo():
     add("markdown", """
     ## 3. Load the published checkpoint
     This is a trained model, not random demonstration scores. Its exact file checksum is pinned below.
-    The original training run used Kaggle data on a local Mac GPU; the training notebook reproduces the workflow in Colab.
+    The published run used Kaggle data on the training device recorded below.
     """)
+    add("markdown", f"**Training device:** {baseline['training_device']}. "
+        "The training notebook contains the complete workflow.")
     add("code", f"""
     from glaucoma.download import download_checkpoint
     checkpoint = download_checkpoint(
         {baseline['checkpoint_url']!r},
         {baseline['checkpoint_sha256']!r},
-        "models/published_v0.1.0.pth",
+        "models/published_{baseline['release_tag']}.pth",
     )
     print("Published checkpoint verified:", checkpoint.name)
     """)

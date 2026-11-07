@@ -1,0 +1,47 @@
+{
+  "run_date": "2026-11-07",
+  "training_device": "Google Colab Tesla T4 GPU",
+  "training_notebook_url": "https://colab.research.google.com/github/Cxsmxnaut/GlaucomAI/blob/96c3704/notebooks/GlaucomAI_Colab.ipynb",
+  "epochs_completed": 12,
+  "selected_epoch": 11,
+  "architecture": "efficientnet_b0",
+  "classes": ["non_referable", "referable"],
+  "training_samples": 8000,
+  "validation_samples": 770,
+  "dataset": "deathtrooper/glaucoma-dataset-eyepacs-airogs-light-v2/versions/4",
+  "threshold": 0.42880725860595703,
+  "validation_loss": 0.4319758242600924,
+  "validation_metrics": {
+    "samples": 770,
+    "true_positive": 339,
+    "true_negative": 271,
+    "false_positive": 114,
+    "false_negative": 46,
+    "sensitivity": 0.8805194805194805,
+    "specificity": 0.7038961038961039,
+    "accuracy": 0.7922077922077922
+  },
+  "test_evaluation": {
+    "split": "test",
+    "threshold": 0.42880725860595703,
+    "metrics": {
+      "samples": 770,
+      "true_positive": 353,
+      "true_negative": 251,
+      "false_positive": 134,
+      "false_negative": 32,
+      "sensitivity": 0.9168831168831169,
+      "specificity": 0.6519480519480519,
+      "accuracy": 0.7844155844155845
+    },
+    "checkpoint_sha256": "c68e06ad913da75f5b0630be5ea81d8335fc3b62cf7362fdc6d773e39fe64750",
+    "warmup_ms": 277.97052999994776,
+    "median_pipeline_ms": 47.866261000024224,
+    "p95_pipeline_ms": 101.31134800008113,
+    "sensitivity_target_met": true,
+    "latency_target_met": true,
+    "note": "Latency includes file decoding, preprocessing and CPU forward pass, not browser transport or UI rendering. Patient separation must be verified by the dataset owner. Model scores are not calibrated clinical probabilities."
+  },
+  "artifact_export_status": "Archive created in Colab; awaiting a supported export. Browser policy rejected the inline data: download link, and the standard Colab download produced no file through the browser tool.",
+  "clinical_validation": "Not performed. Research prototype only."
+}
