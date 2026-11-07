@@ -12,7 +12,7 @@ from glaucoma.pipeline import InputError, ModelError, decode_image, infer, load_
 
 STYLE = """
 <style>
-.gai {font-family:Inter,Arial,sans-serif;color:#193e43;line-height:1.55;max-width:1100px}
+.gai {font-family:Inter,Arial,sans-serif;color:#193e43;line-height:1.55;max-width:1100px;background:#fff;padding:18px;border-radius:16px}
 .gai * {box-sizing:border-box}
 .gai .hero {background:#113f40;color:#fff;padding:30px 34px;border-radius:18px;margin:0 0 20px}
 .gai .eyebrow {font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#a4ded0}
