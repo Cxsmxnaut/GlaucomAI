@@ -65,6 +65,12 @@ def check(root=ROOT):
             raise ValueError(f"P2 source hash does not match its recorded revision: {name}.")
     if p2["clinical_release_allowed"] is not False:
         raise ValueError("P2 research benchmarks cannot authorize clinical release.")
+    archive = json.loads((root / "experiments/research_archive_colab_t4.json").read_text())
+    saved = json.loads((root / "experiments/drive_archive_record.json").read_text())
+    if saved["sha256"] != archive["sha256"] or saved["bytes"] != archive["bytes"]:
+        raise ValueError("Saved Drive archive differs from the verified source archive.")
+    if saved["checkpoint_count"] != 5 or saved["drive_flush_and_unmount_completed"] is not True:
+        raise ValueError("Research retention evidence is incomplete.")
     return {"evidence_integrity": "verified", "clinical_release_allowed": False,
             "note": "Hashes and internally consistent research records do not establish clinical validity."}
 

@@ -17,5 +17,6 @@ Checked 2026-11-07. Guidance informs planning; it is not proof that this project
 | [RIM-ONE authors](https://github.com/miag-ull/rim-one-dl) | Original benchmark conditions and source restrictions; reason for exclusion from S1 |
 | [G1020 original paper](https://arxiv.org/abs/2006.09158) | Potential external source; repeated images across 432 patients, requiring group-aware handling; not onboarded |
 | [EyeQ authors' repository](https://github.com/HzFu/EyeQ) | Candidate quality dataset, original EyePACS dependency, code license, and warning that old released weights are unusable; not onboarded |
+| [MSHF original data](https://figshare.com/articles/figure/MSHF_A_Multi-Source_Heterogeneous_Fundus_MSHF_Dataset_for_Image_Quality_Assessment/21507564/1) and [paper](https://www.nature.com/articles/s41597-023-02188-x) | Original quality-data terms and semantics; header-only inspection in progress, no trained quality model |
 
 Project observations are supported by committed run JSON, source, tests, CI and the process journal, not by regulatory guidance. Proposed controls, study stages, owners and acceptance criteria remain project recommendations/drafts until reviewed. No institution named by the user is asserted to have accepted this project.

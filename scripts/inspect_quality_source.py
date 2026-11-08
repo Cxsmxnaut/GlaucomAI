@@ -18,8 +18,14 @@ EXPECTED_MD5 = "c4f7bbb7979ae918691c35e543900f03"
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--work", type=Path, default=Path("data/mshf_v1"))
+    parser.add_argument("--report-name", default="inspection.json")
     args = parser.parse_args()
     args.work.mkdir(parents=True, exist_ok=True)
+    if Path(args.report_name).name != args.report_name or not args.report_name.endswith(".json"):
+        raise ValueError("Use a JSON filename inside the inspection folder.")
+    report_path = args.work / args.report_name
+    if report_path.exists():
+        raise ValueError("Inspection report exists. Choose a new --report-name to preserve evidence.")
     destination = args.work / "MSHF_dataset.zip"
     if not destination.exists():
         temporary = destination.with_suffix(".partial")
@@ -44,7 +50,8 @@ def main():
               "license": "CC BY 4.0", "bytes": EXPECTED_BYTES,
               "publisher_md5": EXPECTED_MD5, "sha256": strong.hexdigest(),
               "inspection_scope": "Archive paths and spreadsheet headers only; no test labels read and no model trained.",
-              "spreadsheets": {}, "directory_image_counts": {}, "original_examples": []}
+              "spreadsheets": {}, "directory_image_counts": {}, "non_image_files": [],
+              "dimension_warnings": {}}
     counts = {}
     with zipfile.ZipFile(destination) as bundle:
         for name in bundle.namelist():
@@ -54,8 +61,8 @@ def main():
             if path.suffix.lower() in {".jpg", ".jpeg", ".png", ".bmp", ".tif", ".tiff"}:
                 parent = path.parent.as_posix()
                 counts[parent] = counts.get(parent, 0) + 1
-                if "Original" in path.parts and len(report["original_examples"]) < 12:
-                    report["original_examples"].append(name)
+            elif not name.endswith("/"):
+                report["non_image_files"].append(name)
             if path.suffix.lower() == ".xlsx":
                 workbook = openpyxl.load_workbook(BytesIO(bundle.read(name)), read_only=True, data_only=True)
                 try:
@@ -64,10 +71,13 @@ def main():
                         "header": [str(value) if value is not None else None
                                    for value in next(sheet.iter_rows(min_row=1, max_row=1, values_only=True))]
                     } for sheet in workbook.worksheets}
+                    for sheet in workbook.worksheets:
+                        if sheet.max_row and sheet.max_row > 10000:
+                            report["dimension_warnings"][sheet.title] = "Declared row dimension exceeds source image counts. Do not materialize sheet.values; use bounded, verified image-name joins."
                 finally:
                     workbook.close()
     report["directory_image_counts"] = counts
-    (args.work / "inspection.json").write_text(json.dumps(report, indent=2))
+    report_path.write_text(json.dumps(report, indent=2))
     print("QUALITY SOURCE INSPECTION COMPLETE", flush=True)
     print(json.dumps(report, indent=2), flush=True)
 
