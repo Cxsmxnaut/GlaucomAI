@@ -88,7 +88,23 @@ A second 12-epoch run completed **inside Google Colab on a Tesla T4 GPU** on Nov
 
 Direct browser export was blocked: browser policy rejected a generated `data:` download link, and the normal Colab download produced no file through the browser tool. After explicit user approval for Drive access, all five S1/P2 checkpoints and their evidence were packaged and saved privately to **Google Drive → GlaucomAI_Artifacts → `2026-11-07_45768499_GlaucomAI_research_evidence.zip`** (75,499,199 bytes). The saved SHA-256 matched, and Drive was flushed and unmounted. [Save record](experiments/drive_archive_record.json). No dataset images or image manifests are included. The published demo continues to use v0.1.0; the new checkpoints are retained in Drive and have not been published as a GitHub release.
 
-## Run locally
+## Local webcam demonstration
+
+The web UI guides face/eye alignment and a **continuous ten-second steady hold**, then zooms into the visible external eye. It switches to a **separate, clearly labeled example retinal photograph** for actual model inference. An ordinary webcam cannot photograph the retina. You can also upload a genuine PNG/JPEG fundus image under 10 MB.
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements-web.txt
+python scripts/setup_web_assets.py --download-baseline
+python web_app.py --port 8765
+```
+
+Open **[http://localhost:8765](http://localhost:8765)** and choose **Enable camera**. For a camera-free preview, choose **Explore the retinal example**. Setup needs internet to download the pinned browser tracker, one Kaggle benchmark image, and the published checkpoint. Existing matching files are reused; a different checkpoint is never overwritten. Assets and images stay out of Git. Review the [source and terms](web/THIRD_PARTY.md) before using the dataset.
+
+The default UI uses **EfficientNet-B0, original baseline v0.1.0**. It does not deploy the newer private Drive checkpoints or improve the model. Camera frames and face landmarks stay in browser memory. Only the separate example or manual upload reaches the loopback Python server, which processes it in memory. **Start again** clears the session; hiding the tab stops an active camera session. This is a research demonstration, not an eye examination or diagnosis. [Implementation, checks, and limits](docs/healthcare/18-local-web-demo.md).
+
+## Local model training
 
 Python 3.11 or newer is recommended. CUDA is used automatically when available; CPU training is slower. Apple Silicon can use `--device mps` explicitly.
 
@@ -124,6 +140,8 @@ The source must contain `train/`, `validation/`, and `test/`, each containing `N
 | `evaluate.py` | Held-out metrics and CPU latency |
 | `glaucoma/pipeline.py` | Safe decoding, shared preprocessing, checkpoint validation, inference |
 | `glaucoma/notebook_ui.py` | In-notebook image/results dashboard |
+| `web_app.py`, `web/` | Local webcam alignment, example retina, and real research inference |
+| `scripts/setup_web_assets.py` | Verify pinned tracker assets, example image, and optional baseline checkpoint |
 | `scripts/build_notebook.py` | Rebuild notebook from Python source |
 | `experiments/baseline.json` | Recorded baseline metrics and release checkpoint checksum |
 | `tests/` | Image, class-order, split, checkpoint, inference, metrics, and notebook checks |
@@ -133,12 +151,13 @@ Uploaded images are not written to disk by the dashboard. They remain in session
 ## Development checks
 
 ```bash
-python -m pip install -r requirements-dev.txt
+python -m pip install -r requirements-dev.txt -r requirements-web-dev.txt
 python scripts/build_notebook.py
 python scripts/build_sequential_notebook.py
 python scripts/build_multitask_notebook.py
 ruff check .
 pytest -q
+node --test tests/web/*.test.mjs
 python scripts/build_notebook.py --check
 python scripts/build_sequential_notebook.py --check
 python scripts/build_multitask_notebook.py --check

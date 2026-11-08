@@ -12,3 +12,4 @@ kaggle.json
 *.zip
 .ipynb_checkpoints/
 .streamlit/secrets.toml
+web/vendor/

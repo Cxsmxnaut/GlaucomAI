@@ -1,0 +1,44 @@
+{
+  "sdk_version": "1.2.2",
+  "sdk_license": "Apache-2.0",
+  "npm_tarball": "https://registry.npmjs.org/@mediapipe/tasks-vision/-/tasks-vision-1.2.2.tgz",
+  "npm_sha512": "Z7BikxnTvlKgc3d/Nw+LV6B0xyAACxYeAHHUu/xUhm1SV7jlExa9M37beiF/wZFoy0H+cs1PlIT2Z4km02UEHQ==",
+  "files": {
+    "vision_bundle.mjs": {
+      "sha256": "b65acb59b370cd6561afd9d04c29ed7a87e7ed6386922ac1b263af1f1ad06b7d",
+      "bytes": 156062,
+      "archive_path": "package/vision_bundle.mjs"
+    },
+    "wasm/vision_wasm_internal.js": {
+      "sha256": "f2b9c17131ea79716ec6bf07b117a087b2749a6f8a1e2f1f2e77a9382092db5b",
+      "bytes": 334128,
+      "archive_path": "package/wasm/vision_wasm_internal.js"
+    },
+    "wasm/vision_wasm_internal.wasm": {
+      "sha256": "f5bd25147ac89d506074293ce2675969b10e827180db95a0d9689c2ed80764ab",
+      "bytes": 14603354,
+      "archive_path": "package/wasm/vision_wasm_internal.wasm"
+    },
+    "wasm/vision_wasm_module_internal.js": {
+      "sha256": "72fba0ac8a4034ce9d63f68389df1dead52069409ea621688eedf97f01d4362f",
+      "bytes": 334166,
+      "archive_path": "package/wasm/vision_wasm_module_internal.js"
+    },
+    "wasm/vision_wasm_module_internal.wasm": {
+      "sha256": "b8927a2eebfe80dd98a426a210a9e820c8215168c06f3bcf5d4d09080f623db5",
+      "bytes": 14603372,
+      "archive_path": "package/wasm/vision_wasm_module_internal.wasm"
+    },
+    "face_landmarker.task": {
+      "sha256": "64184e229b263107bc2b804c6625db1341ff2bb731874b0bcc2fe6544e0bc9ff",
+      "bytes": 3758596,
+      "url": "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task"
+    }
+  },
+  "sample": {
+    "dataset": "deathtrooper/glaucoma-dataset-eyepacs-airogs-light-v2/versions/4",
+    "source_path": "test/RG/EyePACS-TRAIN-RG-3100.jpg",
+    "sha256": "000f552bce6ac5995b4f068cf0112359f295c51821e81c3171ee15882fdd460b",
+    "prepared_path": "data/prepared/test/referable/000f552bce6ac599.jpg"
+  }
+}

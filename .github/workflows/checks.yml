@@ -15,7 +15,11 @@ jobs:
           python-version: '3.11'
           cache: pip
       - run: python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
-      - run: python -m pip install -r requirements-dev.txt "ipywidgets==${{ matrix.widgets }}"
+      - run: python -m pip install -r requirements-dev.txt -r requirements-web-dev.txt "ipywidgets==${{ matrix.widgets }}"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/web/*.test.mjs
       - run: ruff check .
       - run: python scripts/build_notebook.py --check
       - run: python scripts/build_sequential_notebook.py --check

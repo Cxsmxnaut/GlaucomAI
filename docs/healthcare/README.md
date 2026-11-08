@@ -25,6 +25,7 @@ This folder records what happened, why decisions were made, what the evidence su
 | [15 Evidence acquisition](15-evidence-acquisition.md) | Investigate quality data and new cohorts without claiming clinical readiness |
 | [16 Quality source review](16-quality-source-review.md) | Review original MSHF terms, quality semantics, duplicates and patient grouping |
 | [17 Collaboration drafts](17-clinical-collaboration-drafts.md) | Prepare truthful clinical/data-owner inquiries without sending messages |
+| [18 Local web demo](18-local-web-demo.md) | Separate browser-only webcam alignment from genuine retinal-image inference |
 
 ## Evidence language
 
