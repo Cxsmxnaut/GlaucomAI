@@ -29,6 +29,6 @@ P2's companion provenance record pins its original source commit. Its code hashe
 3. Patient independence unverified for two sources; small single-source PAPILA cohort.
 4. No validated input-quality/abstention system or demonstrated clinician–AI workflow benefit.
 5. No reviewed clinical deployment, privacy/data agreements, regulatory determination, or operated monitoring/support.
-6. Colab weights remain temporary; a supported binary export/retention path is unresolved.
+6. Research weights are now retained in a verified private Drive archive after explicit user approval; a controlled clinical artifact-distribution and operated backup/restore process is still absent.
 
 The [FDA GMLP overview](https://www.fda.gov/medical-devices/artificial-intelligence-enabled-medical-devices/good-machine-learning-practice-medical-device-development-guiding-principles) points to international principles spanning the medical-device lifecycle. This project uses them as a planning reference, not as proof of compliance or approval.

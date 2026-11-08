@@ -1,0 +1,10 @@
+{
+  "destination_folder": "GlaucomAI_Artifacts",
+  "filename": "2026-11-07_45768499_GlaucomAI_research_evidence.zip",
+  "bytes": 75499199,
+  "sha256": "45768499f8752510cffda384d406824d8b5c1326296be25765e8ee767dccfaea",
+  "checkpoint_count": 5,
+  "clinical_release_allowed": false,
+  "verification": "Copied through approved Google Drive mount and read back with matching SHA-256.",
+  "drive_flush_and_unmount_completed": true
+}

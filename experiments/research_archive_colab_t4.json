@@ -1,0 +1,10 @@
+{
+  "archive": "/content/GlaucomAI/GlaucomAI_research_evidence.zip",
+  "bytes": 75499199,
+  "sha256": "45768499f8752510cffda384d406824d8b5c1326296be25765e8ee767dccfaea",
+  "files": 53,
+  "checkpoint_count": 5,
+  "images_included": false,
+  "image_manifests_included": false,
+  "clinical_release_allowed": false
+}

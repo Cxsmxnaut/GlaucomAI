@@ -4,6 +4,7 @@
   "training_environment": "Google Colab Tesla T4",
   "result_record": "experiments/separate_tasks_colab_t4.json",
   "evidence_capture": "Unmodified JSON printed by the completed Colab subprocess and read from its notebook output.",
-  "checkpoint_export": "Checkpoints exist in the Colab runtime. Binary artifacts have not been retrieved or published; supported export remains unresolved.",
+  "checkpoint_export": "Five S1/P2 checkpoints were saved privately to the approved Google Drive research archive with matching SHA-256 and completed flush/unmount. New binary weights are not published in a GitHub release.",
+  "storage_record": "experiments/drive_archive_record.json",
   "clinical_release_allowed": false
 }

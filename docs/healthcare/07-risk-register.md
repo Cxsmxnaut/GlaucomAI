@@ -14,7 +14,7 @@ Status: initial engineering risk analysis; **not a completed clinical risk-manag
 | R08 | Softmax interpreted as calibrated disease risk | UI limitations; mixed-label guard | Calibration and human-factors testing on intended workflow |
 | R09 | Wrong/corrupt/stale checkpoint changes behavior | Strict class/preprocessing/finite checks and hashes | Signed release provenance, controlled deployment and rollback |
 | R10 | Patient identifiers leak through images or notebook outputs | Demo memory clearing and no disk upload; private-output metadata | Institution-approved environment, full privacy assessment and operational controls |
-| R11 | Runtime loss destroys evidence or model | Source and aggregate results in Git; weights in temporary Colab | Supported artifact retention/export; current binary export limitation unresolved |
+| R11 | Runtime loss destroys evidence or model | Source/results in Git; five checkpoints in an approved private Drive archive with matching hash and completed flush | Research retention verified; formal backup/restore, artifact distribution and clinical release operations remain unvalidated |
 | R12 | Automation bias or inappropriate autonomous care | Research-only positioning; no care integration | Clinician–AI workflow validation, training and escalation design |
 | R13 | Uncontrolled retraining silently changes clinical behavior | Each research stage saved with parent hash | Clinical change control, impact analysis, revalidation and approval |
 
