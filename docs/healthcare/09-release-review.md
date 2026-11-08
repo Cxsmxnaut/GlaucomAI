@@ -20,6 +20,8 @@ Unknown, missing, failed, or out-of-scope evidence keeps clinical release closed
 
 `python scripts/check_healthcare_evidence.py` checks the exact sequential-report hash, parent/child checkpoint lineage, audit outcome agreement, current pipeline hash against the Colab guard audit, and the recorded narrow input-control behavior. CI runs this check. It deliberately reports clinical release as false. It verifies consistency of recorded evidence, not external truth, clinical validity, or approval. The exact JSON bytes are retained so the recorded audit hash remains reproducible.
 
+P2's companion provenance record pins its original source commit. Its code hashes are checked against that historical revision, so future development does not silently rewrite old results or falsely claim they describe new code. CI fetches this repository's history for that read-only verification. Current pipeline changes still require renewed guard evidence. Neither historical source verification nor internal hash consistency is an independent clinical audit.
+
 ## Current reasons to remain research-only
 
 1. No confirmed clinical partner, agreed endpoint, or approved study.

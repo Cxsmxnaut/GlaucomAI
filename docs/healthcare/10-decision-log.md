@@ -19,3 +19,5 @@
 Next architecture decision remains open: separate task heads versus one newly defined clinical endpoint. Decide before the next protocol, not after viewing its confirmatory results.
 
 P2.0 now specifies a research comparison using separate source-specific heads and limited backbone adaptation. A clinically consistent production endpoint remains unapproved. P2's original protocol is in [14-next-experiment-protocol.md](14-next-experiment-protocol.md); implementation/training had not started when it was written.
+
+P2 completed and was not promoted: PAPILA caught 11/14 positives with 23/48 false alarms, while the inspected ACRIMA benchmark showed strong ranking but sensitivity below the development target at its locked threshold. Preserve the failed tradeoff and investigate data/quality/independence; do not repeatedly retune against these benchmark labels.

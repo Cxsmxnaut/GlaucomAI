@@ -1,6 +1,6 @@
 # P2: separate task outputs and limited backbone adaptation
 
-Protocol revision: P2.0, 2026-11-07. Status: **preregistered at commit de48812 before implementation; original Colab run now in progress**. Research only. This is a model-development hypothesis, not a clinical-study protocol or approval. The fresh-reproduction initialization note was added afterward for reproducibility; it does not change the initialization used by the original run.
+Protocol revision: P2.0, 2026-11-07. Status: **preregistered at commit de48812 before implementation; original Colab run completed**. Research only. This is a model-development hypothesis, not a clinical-study protocol or approval. The fresh-reproduction initialization note was added afterward for reproducibility; it does not change the initialization used by the original run. Results are recorded in [separate_tasks_colab_t4.json](../../experiments/separate_tasks_colab_t4.json).
 
 ## Problem and hypothesis
 
@@ -39,3 +39,17 @@ After both stages are locked, evaluate each native head on its source's developm
 G1020 is a possible later external source: its original paper describes 1,020 images from 432 patients, with repeated images per patient. The paper's linked DFKI data URL returned 404 during this check. Original access/usage terms and a trustworthy patient mapping must be verified before onboarding; a Kaggle mirror or aggregate's rating alone is insufficient. No G1020 images or labels have been inspected or used in P2.
 
 The clinical partner, intended-use sign-off, new confirmatory cohort, gradability dataset, clinical acceptance bounds, and global regulatory/institutional review remain missing. P2 cannot close those gaps by itself.
+
+## Recorded outcome and decision
+
+Both adaptation stages ran 12 epochs on a Colab Tesla T4. Validation selected ACRIMA-stage epoch 12 and PAPILA-stage epoch 3. The original frozen prefix remained identical throughout. Every recorded source hash matches the committed implementation.
+
+Final native-task development benchmarks:
+
+| Task | Sensitivity | Specificity | AUROC | Missed positives | False alarms |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| EyePACS referral | 91.2% | 57.4% | 0.8680 | 34/385 | 164/385 |
+| ACRIMA image label | 83.1% | 97.8% | 0.9882 | 10/59 | 1/46 |
+| PAPILA clinical label | 78.6% | 52.1% | 0.7798 | 3/14 | 23/48 |
+
+The architecture separates target meanings and improves ACRIMA ranking relative to S1, but this run does not improve the PAPILA benchmark or establish acceptable clinical performance. No checkpoint is promoted and no threshold is retuned on these benchmark results. The next priority is source/label/quality and independent clinical evidence, not a sequence of test-driven hyperparameter searches.

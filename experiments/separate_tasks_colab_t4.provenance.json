@@ -1,0 +1,9 @@
+{
+  "protocol_commit": "de488122d2a0720bcce6a921b8b4568a8259061c",
+  "source_commit": "23f461eeaa161e8142b731463f220aa947c65c0a",
+  "training_environment": "Google Colab Tesla T4",
+  "result_record": "experiments/separate_tasks_colab_t4.json",
+  "evidence_capture": "Unmodified JSON printed by the completed Colab subprocess and read from its notebook output.",
+  "checkpoint_export": "Checkpoints exist in the Colab runtime. Binary artifacts have not been retrieved or published; supported export remains unresolved.",
+  "clinical_release_allowed": false
+}

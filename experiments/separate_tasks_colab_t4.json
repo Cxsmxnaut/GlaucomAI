@@ -1,0 +1,326 @@
+{
+  "protocol": "P2.0",
+  "device": "Tesla T4",
+  "seed": 20261108,
+  "source_run_sha256": "0580c2614eb7d8778a4d72882cd9692346b1a442c1c38f7696dffa9e0d8cbde7",
+  "initialization_sha256": "c68e06ad913da75f5b0630be5ea81d8335fc3b62cf7362fdc6d773e39fe64750",
+  "manifest_sha256": "eb8982e4ecbdce937b8561be79aee3dc005933f2a93069071178f271c646e292",
+  "frozen_prefix_sha256": "30c85a287da6168820236744569d2574d3c568c2771cca9ace13ebf7881708c2",
+  "stages": [
+    {
+      "architecture": "efficientnet_b0_separate_tasks_v1",
+      "tasks": [
+        "eyepacs",
+        "acrima",
+        "papila"
+      ],
+      "trained_tasks": [
+        "eyepacs",
+        "acrima"
+      ],
+      "task_classes": {
+        "eyepacs": [
+          "non_referable",
+          "referable"
+        ],
+        "acrima": [
+          "normal",
+          "glaucoma"
+        ],
+        "papila": [
+          "healthy",
+          "glaucoma"
+        ]
+      },
+      "preprocessing": {
+        "size": [
+          224,
+          224
+        ],
+        "mean": [
+          0.485,
+          0.456,
+          0.406
+        ],
+        "std": [
+          0.229,
+          0.224,
+          0.225
+        ]
+      },
+      "thresholds": {
+        "eyepacs": 0.3515668511390686,
+        "acrima": 0.90674889087677
+      },
+      "seed": 20261108,
+      "epoch": 12,
+      "epochs_run": 12,
+      "frozen_prefix_sha256": "30c85a287da6168820236744569d2574d3c568c2771cca9ace13ebf7881708c2",
+      "parent_checkpoint_sha256": "c68e06ad913da75f5b0630be5ea81d8335fc3b62cf7362fdc6d773e39fe64750",
+      "training_domain_counts": {
+        "acrima": 495,
+        "eyepacs": 494
+      },
+      "protocol": "P2.0",
+      "status": "research_only_unvalidated",
+      "label_meanings": {
+        "eyepacs": "dataset referral label",
+        "acrima": "expert image label",
+        "papila": "dataset clinical glaucoma label"
+      },
+      "validation_metrics": {
+        "eyepacs": {
+          "samples": 770,
+          "true_positive": 339,
+          "true_negative": 261,
+          "false_positive": 124,
+          "false_negative": 46,
+          "sensitivity": 0.8805194805194805,
+          "specificity": 0.6779220779220779,
+          "accuracy": 0.7792207792207793
+        },
+        "acrima": {
+          "samples": 105,
+          "true_positive": 52,
+          "true_negative": 45,
+          "false_positive": 1,
+          "false_negative": 7,
+          "sensitivity": 0.8813559322033898,
+          "specificity": 0.9782608695652174,
+          "accuracy": 0.9238095238095239
+        }
+      },
+      "validation_macro_loss": 0.29461835704066536,
+      "checkpoint": "02_acrima_separate_tasks.pth",
+      "checkpoint_sha256": "574e6f4d217369f6ef809b2de062075be2cbc36349b84cfd1b5838ae5c712edb",
+      "development_benchmark_metrics": {
+        "eyepacs": {
+          "samples": 770,
+          "true_positive": 348,
+          "true_negative": 229,
+          "false_positive": 156,
+          "false_negative": 37,
+          "sensitivity": 0.9038961038961039,
+          "specificity": 0.5948051948051948,
+          "accuracy": 0.7493506493506493,
+          "roc_auc": 0.8707707876539046,
+          "brier_score": 0.15412406012279092,
+          "sample_ppv": 0.6904761904761905,
+          "sample_npv": 0.8609022556390977,
+          "sensitivity_wilson_95": [
+            0.8703405490585464,
+            0.9294712841323453
+          ],
+          "specificity_wilson_95": [
+            0.5450639520169192,
+            0.642673230693483
+          ],
+          "interval_note": "Wilson intervals assume independent observations; eye-level intervals are descriptive when both eyes or repeated patients occur. PPV/NPV describe this sample, not population prevalence."
+        },
+        "acrima": {
+          "samples": 105,
+          "true_positive": 46,
+          "true_negative": 46,
+          "false_positive": 0,
+          "false_negative": 13,
+          "sensitivity": 0.7796610169491526,
+          "specificity": 1.0,
+          "accuracy": 0.8761904761904762,
+          "roc_auc": 0.9893146647015475,
+          "brier_score": 0.04522383226512813,
+          "sample_ppv": 1.0,
+          "sample_npv": 0.7796610169491526,
+          "sensitivity_wilson_95": [
+            0.6586730063236291,
+            0.8664580237207097
+          ],
+          "specificity_wilson_95": [
+            0.9229264369144198,
+            1.0
+          ],
+          "interval_note": "Wilson intervals assume independent observations; eye-level intervals are descriptive when both eyes or repeated patients occur. PPV/NPV describe this sample, not population prevalence."
+        }
+      }
+    },
+    {
+      "architecture": "efficientnet_b0_separate_tasks_v1",
+      "tasks": [
+        "eyepacs",
+        "acrima",
+        "papila"
+      ],
+      "trained_tasks": [
+        "eyepacs",
+        "acrima",
+        "papila"
+      ],
+      "task_classes": {
+        "eyepacs": [
+          "non_referable",
+          "referable"
+        ],
+        "acrima": [
+          "normal",
+          "glaucoma"
+        ],
+        "papila": [
+          "healthy",
+          "glaucoma"
+        ]
+      },
+      "preprocessing": {
+        "size": [
+          224,
+          224
+        ],
+        "mean": [
+          0.485,
+          0.456,
+          0.406
+        ],
+        "std": [
+          0.229,
+          0.224,
+          0.225
+        ]
+      },
+      "thresholds": {
+        "eyepacs": 0.4075123071670532,
+        "acrima": 0.8457415699958801,
+        "papila": 0.16949832439422607
+      },
+      "seed": 20261108,
+      "epoch": 3,
+      "epochs_run": 12,
+      "frozen_prefix_sha256": "30c85a287da6168820236744569d2574d3c568c2771cca9ace13ebf7881708c2",
+      "parent_checkpoint_sha256": "574e6f4d217369f6ef809b2de062075be2cbc36349b84cfd1b5838ae5c712edb",
+      "training_domain_counts": {
+        "papila": 296,
+        "eyepacs": 148,
+        "acrima": 148
+      },
+      "protocol": "P2.0",
+      "status": "research_only_unvalidated",
+      "label_meanings": {
+        "eyepacs": "dataset referral label",
+        "acrima": "expert image label",
+        "papila": "dataset clinical glaucoma label"
+      },
+      "validation_metrics": {
+        "eyepacs": {
+          "samples": 770,
+          "true_positive": 339,
+          "true_negative": 258,
+          "false_positive": 127,
+          "false_negative": 46,
+          "sensitivity": 0.8805194805194805,
+          "specificity": 0.6701298701298701,
+          "accuracy": 0.7753246753246753
+        },
+        "acrima": {
+          "samples": 105,
+          "true_positive": 52,
+          "true_negative": 46,
+          "false_positive": 0,
+          "false_negative": 7,
+          "sensitivity": 0.8813559322033898,
+          "specificity": 1.0,
+          "accuracy": 0.9333333333333333
+        },
+        "papila": {
+          "samples": 62,
+          "true_positive": 13,
+          "true_negative": 35,
+          "false_positive": 13,
+          "false_negative": 1,
+          "sensitivity": 0.9285714285714286,
+          "specificity": 0.7291666666666666,
+          "accuracy": 0.7741935483870968
+        }
+      },
+      "validation_macro_loss": 0.3253506751337492,
+      "checkpoint": "03_papila_separate_tasks.pth",
+      "checkpoint_sha256": "595bb1b1897e7ac97d87e77e8be97cc353534844909b6cebe2aabfaca35441e9",
+      "development_benchmark_metrics": {
+        "eyepacs": {
+          "samples": 770,
+          "true_positive": 351,
+          "true_negative": 221,
+          "false_positive": 164,
+          "false_negative": 34,
+          "sensitivity": 0.9116883116883117,
+          "specificity": 0.574025974025974,
+          "accuracy": 0.7428571428571429,
+          "roc_auc": 0.868018215550683,
+          "brier_score": 0.16674942217967717,
+          "sample_ppv": 0.6815533980582524,
+          "sample_npv": 0.8666666666666667,
+          "sensitivity_wilson_95": [
+            0.8791264660280205,
+            0.9361158205363289
+          ],
+          "specificity_wilson_95": [
+            0.5241397088628179,
+            0.6224495981850304
+          ],
+          "interval_note": "Wilson intervals assume independent observations; eye-level intervals are descriptive when both eyes or repeated patients occur. PPV/NPV describe this sample, not population prevalence."
+        },
+        "acrima": {
+          "samples": 105,
+          "true_positive": 49,
+          "true_negative": 45,
+          "false_positive": 1,
+          "false_negative": 10,
+          "sensitivity": 0.8305084745762712,
+          "specificity": 0.9782608695652174,
+          "accuracy": 0.8952380952380953,
+          "roc_auc": 0.9882092851879145,
+          "brier_score": 0.04203747361048105,
+          "sample_ppv": 0.98,
+          "sample_npv": 0.8181818181818182,
+          "sensitivity_wilson_95": [
+            0.71536779263512,
+            0.9052416065081895
+          ],
+          "specificity_wilson_95": [
+            0.8866470547848865,
+            0.9961521457419497
+          ],
+          "interval_note": "Wilson intervals assume independent observations; eye-level intervals are descriptive when both eyes or repeated patients occur. PPV/NPV describe this sample, not population prevalence."
+        },
+        "papila": {
+          "samples": 62,
+          "true_positive": 11,
+          "true_negative": 25,
+          "false_positive": 23,
+          "false_negative": 3,
+          "sensitivity": 0.7857142857142857,
+          "specificity": 0.5208333333333334,
+          "accuracy": 0.5806451612903226,
+          "roc_auc": 0.7797619047619048,
+          "brier_score": 0.1364381851455248,
+          "sample_ppv": 0.3235294117647059,
+          "sample_npv": 0.8928571428571429,
+          "sensitivity_wilson_95": [
+            0.524107694133997,
+            0.9242861328730683
+          ],
+          "specificity_wilson_95": [
+            0.3832923230334281,
+            0.6552868382304838
+          ],
+          "interval_note": "Wilson intervals assume independent observations; eye-level intervals are descriptive when both eyes or repeated patients occur. PPV/NPV describe this sample, not population prevalence."
+        }
+      }
+    }
+  ],
+  "clinical_release_allowed": false,
+  "test_status": "Previously inspected development benchmarks; not independent clinical confirmation.",
+  "scope": "Three separate source-specific targets; no generic clinical output or automated source selection.",
+  "source_sha256": {
+    "multitask_train.py": "2f6fae31f390933838767dfce6a16854b69f9e22d58be210b3f1b0905b33c24a",
+    "glaucoma/multitask.py": "781496c8f6ed2a1f163f2f1c976afd544c4f06fa90b8fc9a3ab755f9f62f3cb7",
+    "glaucoma/multidata.py": "cbce9232b0ebae7f8c0d081950df8f923b6f4ba843b7c83ed8576a3c761dca2b",
+    "glaucoma/pipeline.py": "e31e2b783553cb17e6da75647497a370e7bb5656b3c2a4cda3aea8113b550e9f"
+  }
+}
