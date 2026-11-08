@@ -17,3 +17,5 @@
 | 2026-11-07 D13 | Reject exactly uniform images before model execution | All five flat-color controls exceeded every checkpoint threshold | Implement narrow deterministic guard; retain general quality/retinal recognition as an unresolved clinical gap |
 
 Next architecture decision remains open: separate task heads versus one newly defined clinical endpoint. Decide before the next protocol, not after viewing its confirmatory results.
+
+P2.0 now specifies a research comparison using separate source-specific heads and limited backbone adaptation. A clinically consistent production endpoint remains unapproved. P2's original protocol is in [14-next-experiment-protocol.md](14-next-experiment-protocol.md); implementation/training had not started when it was written.

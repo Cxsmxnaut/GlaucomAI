@@ -15,5 +15,6 @@ Checked 2026-11-07. Guidance informs planning; it is not proof that this project
 | [PAPILA original paper](https://pmc.ncbi.nlm.nih.gov/articles/PMC9184612/) | Patient grouping, diagnosis codes, image counts and clinical label context |
 | [PAPILA original data](https://figshare.com/articles/dataset/PAPILA/14798004) | Original dataset provenance and GPL-3.0+ terms |
 | [RIM-ONE authors](https://github.com/miag-ull/rim-one-dl) | Original benchmark conditions and source restrictions; reason for exclusion from S1 |
+| [G1020 original paper](https://arxiv.org/abs/2006.09158) | Potential external source; repeated images across 432 patients, requiring group-aware handling; not onboarded |
 
 Project observations are supported by committed run JSON, source, tests, CI and the process journal, not by regulatory guidance. Proposed controls, study stages, owners and acceptance criteria remain project recommendations/drafts until reviewed. No institution named by the user is asserted to have accepted this project.

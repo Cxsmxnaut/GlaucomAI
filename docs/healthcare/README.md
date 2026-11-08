@@ -21,6 +21,7 @@ This folder records what happened, why decisions were made, what the evidence su
 | [11 Process journal](11-process-journal.md) | Actual runs, hashes, outcomes, checks, and limitations |
 | [12 Reusable templates](12-reusable-templates.md) | Blank forms for new healthcare projects |
 | [13 References](13-references.md) | Primary sources and what they support |
+| [14 Next experiment](14-next-experiment-protocol.md) | Preregister separate task heads and limited backbone adaptation |
 
 ## Evidence language
 
