@@ -62,6 +62,13 @@ def preprocessing():
     ])
 
 
+def validate_image_signal(image: Image.Image):
+    """Reject an exactly uniform input; this is not a retinal-quality classifier."""
+    extrema = image.convert("RGB").getextrema()
+    if all(low == high for low, high in extrema):
+        raise InputError("This image is completely uniform and contains no usable image detail. Choose another research image. No score was produced.")
+
+
 def build_model(pretrained: bool = False) -> nn.Module:
     weights = models.EfficientNet_B0_Weights.DEFAULT if pretrained else None
     model = models.efficientnet_b0(weights=weights)
@@ -107,6 +114,7 @@ def load_model(path: str | Path) -> LoadedModel:
 
 def infer(image: Image.Image, loaded: LoadedModel) -> dict:
     start = time.perf_counter()
+    validate_image_signal(image)
     with torch.inference_mode():
         tensor = preprocessing()(image.convert("RGB")).unsqueeze(0)
         probabilities = torch.softmax(loaded.model(tensor), dim=1)[0]

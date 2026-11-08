@@ -1,0 +1,153 @@
+{
+  "scope": "Exactly uniform RGB images only; not a validated retinal/gradable classifier.",
+  "pipeline_source_sha256": "e31e2b783553cb17e6da75647497a370e7bb5656b3c2a4cda3aea8113b550e9f",
+  "controls": [
+    {
+      "stage": "eyepacs",
+      "color": [
+        0,
+        0,
+        0
+      ],
+      "abstained": true
+    },
+    {
+      "stage": "eyepacs",
+      "color": [
+        255,
+        255,
+        255
+      ],
+      "abstained": true
+    },
+    {
+      "stage": "eyepacs",
+      "color": [
+        128,
+        128,
+        128
+      ],
+      "abstained": true
+    },
+    {
+      "stage": "eyepacs",
+      "color": [
+        220,
+        40,
+        20
+      ],
+      "abstained": true
+    },
+    {
+      "stage": "eyepacs",
+      "color": [
+        0,
+        180,
+        70
+      ],
+      "abstained": true
+    },
+    {
+      "stage": "acrima",
+      "color": [
+        0,
+        0,
+        0
+      ],
+      "abstained": true
+    },
+    {
+      "stage": "acrima",
+      "color": [
+        255,
+        255,
+        255
+      ],
+      "abstained": true
+    },
+    {
+      "stage": "acrima",
+      "color": [
+        128,
+        128,
+        128
+      ],
+      "abstained": true
+    },
+    {
+      "stage": "acrima",
+      "color": [
+        220,
+        40,
+        20
+      ],
+      "abstained": true
+    },
+    {
+      "stage": "acrima",
+      "color": [
+        0,
+        180,
+        70
+      ],
+      "abstained": true
+    },
+    {
+      "stage": "papila",
+      "color": [
+        0,
+        0,
+        0
+      ],
+      "abstained": true
+    },
+    {
+      "stage": "papila",
+      "color": [
+        255,
+        255,
+        255
+      ],
+      "abstained": true
+    },
+    {
+      "stage": "papila",
+      "color": [
+        128,
+        128,
+        128
+      ],
+      "abstained": true
+    },
+    {
+      "stage": "papila",
+      "color": [
+        220,
+        40,
+        20
+      ],
+      "abstained": true
+    },
+    {
+      "stage": "papila",
+      "color": [
+        0,
+        180,
+        70
+      ],
+      "abstained": true
+    }
+  ],
+  "test_images_checked": {
+    "eyepacs": 770,
+    "acrima": 105,
+    "papila": 62
+  },
+  "test_images_rejected": {
+    "eyepacs": 0,
+    "acrima": 0,
+    "papila": 0
+  },
+  "clinical_release_allowed": false,
+  "model_forward_calls_for_uniform_controls": 0
+}

@@ -8,7 +8,7 @@ from IPython.display import HTML, display
 import ipywidgets as widgets
 import torch
 
-from glaucoma.pipeline import InputError, ModelError, decode_image, infer, load_model
+from glaucoma.pipeline import InputError, ModelError, decode_image, infer, load_model, validate_image_signal
 
 STYLE = """
 <style>
@@ -113,10 +113,12 @@ def display_assistant(model_path="models/best_model.pth"):
         try:
             name, content = uploaded_file(uploader.value)
             state["image"] = decode_image(content, name)
+            validate_image_signal(state["image"])
             analyze.disabled = False
             with output:
                 display(HTML(STYLE + f'<div class="gai"><p class="pill">Image decoded · ready to analyze</p><div class="image"><img src="{image_data_url(state["image"])}" alt="Uploaded image preview"/></div></div>'))
         except InputError as exc:
+            clear_image()
             with output:
                 display(HTML(f'<div class="gai"><div class="note">{escape(str(exc))}</div></div>'))
 
@@ -130,7 +132,7 @@ def display_assistant(model_path="models/best_model.pth"):
             result = infer(state["image"], loaded)
             with output:
                 display(HTML(result_html(state["image"], result)))
-        except (ModelError, RuntimeError) as exc:
+        except (InputError, ModelError, RuntimeError) as exc:
             with output:
                 display(HTML(f'<div class="gai"><div class="note">Analysis unavailable: {escape(str(exc))}</div></div>'))
         finally:

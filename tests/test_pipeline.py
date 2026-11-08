@@ -64,6 +64,7 @@ def checkpoint(tmp_path_factory):
 def test_real_checkpoint_roundtrip_and_cpu_inference(checkpoint):
     loaded = load_model(checkpoint)
     image = decode_image(encoded_image(), "retina.png")
+    image.putpixel((0, 0), (200, 100, 80))
     result = infer(image, loaded)
     assert result["non_referable"] + result["referable"] == pytest.approx(1)
     assert result["flagged"] == (result["referable"] >= 0.4)
@@ -97,4 +98,16 @@ def test_rejects_nonfinite_model_output():
             return torch.tensor([[float("nan"), 0.0]])
 
     with pytest.raises(ModelError):
-        infer(Image.new("RGB", (224, 224)), LoadedModel(BadModel(), 0.5, {}))
+        image = Image.new("RGB", (224, 224))
+        image.putpixel((0, 0), (200, 100, 80))
+        infer(image, LoadedModel(BadModel(), 0.5, {}))
+
+
+@pytest.mark.parametrize("color", [(0, 0, 0), (255, 255, 255), (128, 128, 128), (220, 40, 20), (0, 180, 70)])
+def test_uniform_input_abstains_before_any_model_execution(color):
+    class MustNotRun(torch.nn.Module):
+        def forward(self, image):
+            raise AssertionError("Model must not execute for a uniform image")
+
+    with pytest.raises(InputError, match="No score was produced"):
+        infer(Image.new("RGB", (512, 512), color), LoadedModel(MustNotRun(), .5, {}))

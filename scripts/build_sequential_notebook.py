@@ -73,8 +73,29 @@ display(HTML("<h2>Sequential training completed in Colab</h2><table cellpadding=
              "<th>Specificity</th><th>Accuracy</th><th>Missed positives</th><th>False alarms</th>"
              "</tr>" + "".join(rows) + "</table><p>Research only. Not clinically validated.</p>"))
 """)
+    add("markdown", """## Audit uncertainty and input rejection
+The audit verifies checkpoint hashes and identical frozen backbones, reproduces confusion counts,
+reports AUROC/Brier/sample predictive values, and bootstraps whole PAPILA patient groups.
+Other sources have no verified patient identifiers, so patient-level intervals are unavailable.
+Raw model solid-color controls expose why model scores alone are unsafe. The separate guard audit
+verifies that the application rejects exactly uniform images before executing a model.
+This narrow guard is not a retinal/gradable-image classifier. No audit grants clinical approval.
+""")
+    add("code", """run_logged([sys.executable, "-u", "clinical_audit.py", "--run", "sequential_run"])
+run_logged([sys.executable, "-u", "input_guard_audit.py", "--run", "sequential_run"])
+import zipfile
+with zipfile.ZipFile("sequential_run.zip", "a", zipfile.ZIP_DEFLATED) as bundle:
+    for name in ("clinical_audit.json", "input_guard_audit.json"):
+        bundle.write(Path("sequential_run") / name, arcname=name)
+    for name, content in SOURCES.items():
+        bundle.writestr("source/" + name, content)
+    bundle.writestr("RESEARCH_NOTICE.md", "Research only. Not clinically validated. "
+                     "EyePACS referral and ACRIMA/PAPILA disease labels differ. "
+                     "PAPILA original data: GPL-3.0+. Review all original source terms. "
+                     "See https://github.com/Cxsmxnaut/GlaucomAI/blob/main/DATASETS.md")
+""")
     add("markdown", """## Save the trained artifacts
-The archive contains all three checkpoints, stage histories, test results, source versions, and package versions.
+The archive contains all three checkpoints, stage histories, test/audit results, source code, source versions, and package versions.
 It contains no images, clinical tables, credentials, or image manifest. Colab files are temporary.
 Run the next cell to download through Colab's supported download helper.
 

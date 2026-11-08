@@ -1,0 +1,430 @@
+{
+  "training_run_sha256": "0580c2614eb7d8778a4d72882cd9692346b1a442c1c38f7696dffa9e0d8cbde7",
+  "audit_device": "Tesla T4",
+  "stages": [
+    {
+      "stage": "eyepacs",
+      "checkpoint_sha256": "c68e06ad913da75f5b0630be5ea81d8335fc3b62cf7362fdc6d773e39fe64750",
+      "datasets": {
+        "eyepacs": {
+          "samples": 770,
+          "true_positive": 353,
+          "true_negative": 251,
+          "false_positive": 134,
+          "false_negative": 32,
+          "sensitivity": 0.9168831168831169,
+          "specificity": 0.6519480519480519,
+          "accuracy": 0.7844155844155845,
+          "roc_auc": 0.885464665204925,
+          "brier_score": 0.1440864129173702,
+          "sample_ppv": 0.7248459958932238,
+          "sample_npv": 0.8869257950530035,
+          "sensitivity_wilson_95": [
+            0.8850185680298879,
+            0.9405106874500999
+          ],
+          "specificity_wilson_95": [
+            0.6030763615215881,
+            0.6978174792608375
+          ],
+          "interval_note": "Wilson intervals assume independent observations; eye-level intervals are descriptive when both eyes or repeated patients occur. PPV/NPV describe this sample, not population prevalence.",
+          "patient_bootstrap_95": null,
+          "patient_interval_status": "Unavailable: no independently verified patient identifiers."
+        },
+        "acrima": {
+          "samples": 105,
+          "true_positive": 4,
+          "true_negative": 46,
+          "false_positive": 0,
+          "false_negative": 55,
+          "sensitivity": 0.06779661016949153,
+          "specificity": 1.0,
+          "accuracy": 0.47619047619047616,
+          "roc_auc": 0.7756079587324981,
+          "brier_score": 0.43406329910240504,
+          "sample_ppv": 1.0,
+          "sample_npv": 0.45544554455445546,
+          "sensitivity_wilson_95": [
+            0.02667861897130437,
+            0.16175524368744493
+          ],
+          "specificity_wilson_95": [
+            0.9229264369144198,
+            1.0
+          ],
+          "interval_note": "Wilson intervals assume independent observations; eye-level intervals are descriptive when both eyes or repeated patients occur. PPV/NPV describe this sample, not population prevalence.",
+          "patient_bootstrap_95": null,
+          "patient_interval_status": "Unavailable: no independently verified patient identifiers."
+        },
+        "papila": {
+          "samples": 62,
+          "true_positive": 5,
+          "true_negative": 42,
+          "false_positive": 6,
+          "false_negative": 9,
+          "sensitivity": 0.35714285714285715,
+          "specificity": 0.875,
+          "accuracy": 0.7580645161290323,
+          "roc_auc": 0.7961309523809523,
+          "brier_score": 0.14396705507365196,
+          "sample_ppv": 0.45454545454545453,
+          "sample_npv": 0.8235294117647058,
+          "sensitivity_wilson_95": [
+            0.1634473175355414,
+            0.612355768960926
+          ],
+          "specificity_wilson_95": [
+            0.7529954171361317,
+            0.9414294856142802
+          ],
+          "interval_note": "Wilson intervals assume independent observations; eye-level intervals are descriptive when both eyes or repeated patients occur. PPV/NPV describe this sample, not population prevalence.",
+          "patient_bootstrap_95": {
+            "groups": 31,
+            "replicates": 2000,
+            "seed": 20261107,
+            "method": "Percentile 95% bootstrap, sampling whole patient groups with replacement.",
+            "intervals": {
+              "sensitivity": {
+                "lower": 0.08333333333333333,
+                "upper": 0.6666666666666666,
+                "valid_replicates": 1998
+              },
+              "specificity": {
+                "lower": 0.7391304347826086,
+                "upper": 0.98,
+                "valid_replicates": 2000
+              },
+              "accuracy": {
+                "lower": 0.6129032258064516,
+                "upper": 0.8870967741935484,
+                "valid_replicates": 2000
+              }
+            },
+            "limitation": "Small cohorts and rare outcomes can produce unstable intervals. Grouping correctness, site independence, and sampling representativeness are not established by bootstrap."
+          }
+        }
+      },
+      "non_retinal_negative_controls": [
+        {
+          "control": "solid_rgb(0, 0, 0)",
+          "positive_score": 0.7225894927978516,
+          "format_validation_passed": true,
+          "above_threshold": true,
+          "input_abstention": false
+        },
+        {
+          "control": "solid_rgb(255, 255, 255)",
+          "positive_score": 0.5356120467185974,
+          "format_validation_passed": true,
+          "above_threshold": true,
+          "input_abstention": false
+        },
+        {
+          "control": "solid_rgb(128, 128, 128)",
+          "positive_score": 0.7362464070320129,
+          "format_validation_passed": true,
+          "above_threshold": true,
+          "input_abstention": false
+        },
+        {
+          "control": "solid_rgb(220, 40, 20)",
+          "positive_score": 0.7639714479446411,
+          "format_validation_passed": true,
+          "above_threshold": true,
+          "input_abstention": false
+        },
+        {
+          "control": "solid_rgb(0, 180, 70)",
+          "positive_score": 0.5024697184562683,
+          "format_validation_passed": true,
+          "above_threshold": true,
+          "input_abstention": false
+        }
+      ]
+    },
+    {
+      "stage": "acrima",
+      "checkpoint_sha256": "9f2df71fba73ec13fd2a6eb0eaab34b8cf186ebd9f71eb741e3350cbe233aae1",
+      "datasets": {
+        "eyepacs": {
+          "samples": 770,
+          "true_positive": 317,
+          "true_negative": 291,
+          "false_positive": 94,
+          "false_negative": 68,
+          "sensitivity": 0.8233766233766234,
+          "specificity": 0.7558441558441559,
+          "accuracy": 0.7896103896103897,
+          "roc_auc": 0.8769775678866588,
+          "brier_score": 0.14219307273912013,
+          "sample_ppv": 0.7712895377128953,
+          "sample_npv": 0.8105849582172702,
+          "sensitivity_wilson_95": [
+            0.7821435026442487,
+            0.8582203123542467
+          ],
+          "specificity_wilson_95": [
+            0.7105434753494777,
+            0.7960897437457175
+          ],
+          "interval_note": "Wilson intervals assume independent observations; eye-level intervals are descriptive when both eyes or repeated patients occur. PPV/NPV describe this sample, not population prevalence.",
+          "patient_bootstrap_95": null,
+          "patient_interval_status": "Unavailable: no independently verified patient identifiers."
+        },
+        "acrima": {
+          "samples": 105,
+          "true_positive": 54,
+          "true_negative": 36,
+          "false_positive": 10,
+          "false_negative": 5,
+          "sensitivity": 0.9152542372881356,
+          "specificity": 0.782608695652174,
+          "accuracy": 0.8571428571428571,
+          "roc_auc": 0.9521002210759028,
+          "brier_score": 0.090991084663162,
+          "sample_ppv": 0.84375,
+          "sample_npv": 0.8780487804878049,
+          "sensitivity_wilson_95": [
+            0.8164820473258972,
+            0.9632579669823632
+          ],
+          "specificity_wilson_95": [
+            0.6442631262842105,
+            0.8773909467543746
+          ],
+          "interval_note": "Wilson intervals assume independent observations; eye-level intervals are descriptive when both eyes or repeated patients occur. PPV/NPV describe this sample, not population prevalence.",
+          "patient_bootstrap_95": null,
+          "patient_interval_status": "Unavailable: no independently verified patient identifiers."
+        },
+        "papila": {
+          "samples": 62,
+          "true_positive": 10,
+          "true_negative": 33,
+          "false_positive": 15,
+          "false_negative": 4,
+          "sensitivity": 0.7142857142857143,
+          "specificity": 0.6875,
+          "accuracy": 0.6935483870967742,
+          "roc_auc": 0.8020833333333334,
+          "brier_score": 0.16711087005327713,
+          "sample_ppv": 0.4,
+          "sample_npv": 0.8918918918918919,
+          "sensitivity_wilson_95": [
+            0.4535091567010681,
+            0.8827862135542308
+          ],
+          "specificity_wilson_95": [
+            0.5466692858410841,
+            0.8005431655341219
+          ],
+          "interval_note": "Wilson intervals assume independent observations; eye-level intervals are descriptive when both eyes or repeated patients occur. PPV/NPV describe this sample, not population prevalence.",
+          "patient_bootstrap_95": {
+            "groups": 31,
+            "replicates": 2000,
+            "seed": 20261107,
+            "method": "Percentile 95% bootstrap, sampling whole patient groups with replacement.",
+            "intervals": {
+              "sensitivity": {
+                "lower": 0.4,
+                "upper": 1.0,
+                "valid_replicates": 1998
+              },
+              "specificity": {
+                "lower": 0.5,
+                "upper": 0.8478260869565217,
+                "valid_replicates": 2000
+              },
+              "accuracy": {
+                "lower": 0.5483870967741935,
+                "upper": 0.8387096774193549,
+                "valid_replicates": 2000
+              }
+            },
+            "limitation": "Small cohorts and rare outcomes can produce unstable intervals. Grouping correctness, site independence, and sampling representativeness are not established by bootstrap."
+          }
+        }
+      },
+      "non_retinal_negative_controls": [
+        {
+          "control": "solid_rgb(0, 0, 0)",
+          "positive_score": 0.8075199723243713,
+          "format_validation_passed": true,
+          "above_threshold": true,
+          "input_abstention": false
+        },
+        {
+          "control": "solid_rgb(255, 255, 255)",
+          "positive_score": 0.5420815348625183,
+          "format_validation_passed": true,
+          "above_threshold": true,
+          "input_abstention": false
+        },
+        {
+          "control": "solid_rgb(128, 128, 128)",
+          "positive_score": 0.7663783431053162,
+          "format_validation_passed": true,
+          "above_threshold": true,
+          "input_abstention": false
+        },
+        {
+          "control": "solid_rgb(220, 40, 20)",
+          "positive_score": 0.8806700110435486,
+          "format_validation_passed": true,
+          "above_threshold": true,
+          "input_abstention": false
+        },
+        {
+          "control": "solid_rgb(0, 180, 70)",
+          "positive_score": 0.5389042496681213,
+          "format_validation_passed": true,
+          "above_threshold": true,
+          "input_abstention": false
+        }
+      ]
+    },
+    {
+      "stage": "papila",
+      "checkpoint_sha256": "f2daa2899f32ec27b3814a8e550d0a49a9612bf067addd4d79bbd75a47260dc0",
+      "datasets": {
+        "eyepacs": {
+          "samples": 770,
+          "true_positive": 365,
+          "true_negative": 179,
+          "false_positive": 206,
+          "false_negative": 20,
+          "sensitivity": 0.948051948051948,
+          "specificity": 0.4649350649350649,
+          "accuracy": 0.7064935064935065,
+          "roc_auc": 0.8736110642604149,
+          "brier_score": 0.143324040474208,
+          "sample_ppv": 0.6392294220665499,
+          "sample_npv": 0.8994974874371859,
+          "sensitivity_wilson_95": [
+            0.9211279705343672,
+            0.9661230984394517
+          ],
+          "specificity_wilson_95": [
+            0.41570544283340705,
+            0.5148575169860332
+          ],
+          "interval_note": "Wilson intervals assume independent observations; eye-level intervals are descriptive when both eyes or repeated patients occur. PPV/NPV describe this sample, not population prevalence.",
+          "patient_bootstrap_95": null,
+          "patient_interval_status": "Unavailable: no independently verified patient identifiers."
+        },
+        "acrima": {
+          "samples": 105,
+          "true_positive": 57,
+          "true_negative": 32,
+          "false_positive": 14,
+          "false_negative": 2,
+          "sensitivity": 0.9661016949152542,
+          "specificity": 0.6956521739130435,
+          "accuracy": 0.8476190476190476,
+          "roc_auc": 0.9557848194546794,
+          "brier_score": 0.09286307826471066,
+          "sample_ppv": 0.8028169014084507,
+          "sample_npv": 0.9411764705882353,
+          "sensitivity_wilson_95": [
+            0.8845642924988925,
+            0.9906540909083387
+          ],
+          "specificity_wilson_95": [
+            0.5519435355159235,
+            0.8092015919723277
+          ],
+          "interval_note": "Wilson intervals assume independent observations; eye-level intervals are descriptive when both eyes or repeated patients occur. PPV/NPV describe this sample, not population prevalence.",
+          "patient_bootstrap_95": null,
+          "patient_interval_status": "Unavailable: no independently verified patient identifiers."
+        },
+        "papila": {
+          "samples": 62,
+          "true_positive": 12,
+          "true_negative": 31,
+          "false_positive": 17,
+          "false_negative": 2,
+          "sensitivity": 0.8571428571428571,
+          "specificity": 0.6458333333333334,
+          "accuracy": 0.6935483870967742,
+          "roc_auc": 0.8690476190476191,
+          "brier_score": 0.10655821871985918,
+          "sample_ppv": 0.41379310344827586,
+          "sample_npv": 0.9393939393939394,
+          "sensitivity_wilson_95": [
+            0.6005862050302965,
+            0.9599060787285351
+          ],
+          "specificity_wilson_95": [
+            0.504390570103431,
+            0.7656635587439515
+          ],
+          "interval_note": "Wilson intervals assume independent observations; eye-level intervals are descriptive when both eyes or repeated patients occur. PPV/NPV describe this sample, not population prevalence.",
+          "patient_bootstrap_95": {
+            "groups": 31,
+            "replicates": 2000,
+            "seed": 20261107,
+            "method": "Percentile 95% bootstrap, sampling whole patient groups with replacement.",
+            "intervals": {
+              "sensitivity": {
+                "lower": 0.6666666666666666,
+                "upper": 1.0,
+                "valid_replicates": 1998
+              },
+              "specificity": {
+                "lower": 0.47616071428571427,
+                "upper": 0.8125,
+                "valid_replicates": 2000
+              },
+              "accuracy": {
+                "lower": 0.5483870967741935,
+                "upper": 0.8225806451612904,
+                "valid_replicates": 2000
+              }
+            },
+            "limitation": "Small cohorts and rare outcomes can produce unstable intervals. Grouping correctness, site independence, and sampling representativeness are not established by bootstrap."
+          }
+        }
+      },
+      "non_retinal_negative_controls": [
+        {
+          "control": "solid_rgb(0, 0, 0)",
+          "positive_score": 0.7828167676925659,
+          "format_validation_passed": true,
+          "above_threshold": true,
+          "input_abstention": false
+        },
+        {
+          "control": "solid_rgb(255, 255, 255)",
+          "positive_score": 0.4408372640609741,
+          "format_validation_passed": true,
+          "above_threshold": true,
+          "input_abstention": false
+        },
+        {
+          "control": "solid_rgb(128, 128, 128)",
+          "positive_score": 0.6934528350830078,
+          "format_validation_passed": true,
+          "above_threshold": true,
+          "input_abstention": false
+        },
+        {
+          "control": "solid_rgb(220, 40, 20)",
+          "positive_score": 0.8510489463806152,
+          "format_validation_passed": true,
+          "above_threshold": true,
+          "input_abstention": false
+        },
+        {
+          "control": "solid_rgb(0, 180, 70)",
+          "positive_score": 0.49984073638916016,
+          "format_validation_passed": true,
+          "above_threshold": true,
+          "input_abstention": false
+        }
+      ]
+    }
+  ],
+  "clinical_release_allowed": false,
+  "clinical_release_reason": "Research data and engineering tests cannot establish clinical safety. Intended-use approval, independent multisite clinical evidence, image-quality validation, workflow validation, and jurisdiction review remain absent.",
+  "test_reuse_note": "These test results were already inspected after the locked sequential run. They are development benchmarks for future experiments; they cannot remain an unseen confirmatory test.",
+  "negative_control_note": "Solid-color images are software negative controls, not a validated retinal image-quality test."
+}

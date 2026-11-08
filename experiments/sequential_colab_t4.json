@@ -1,0 +1,346 @@
+{
+  "training_device": "Tesla T4",
+  "seed": 20261107,
+  "datasets": {
+    "eyepacs": "deathtrooper/glaucoma-dataset-eyepacs-airogs-light-v2/versions/4",
+    "acrima": "orvile/acrima-glaucoma-assessment-using-fundus-images/versions/1",
+    "papila": "orvile/papila-retinal-fundus-images/versions/1"
+  },
+  "counts": {
+    "eyepacs/train/0": 4000,
+    "eyepacs/train/1": 4000,
+    "eyepacs/val/0": 385,
+    "eyepacs/val/1": 385,
+    "eyepacs/test/0": 385,
+    "eyepacs/test/1": 385,
+    "acrima/train/0": 217,
+    "acrima/val/0": 46,
+    "acrima/test/0": 46,
+    "acrima/test/1": 59,
+    "acrima/train/1": 278,
+    "acrima/val/1": 59,
+    "papila/train/1": 59,
+    "papila/val/1": 14,
+    "papila/train/0": 237,
+    "papila/val/0": 48,
+    "papila/test/0": 48,
+    "papila/test/1": 14
+  },
+  "stages": [
+    {
+      "architecture": "efficientnet_b0",
+      "classes": [
+        "non_referable",
+        "referable"
+      ],
+      "preprocessing": {
+        "size": [
+          224,
+          224
+        ],
+        "mean": [
+          0.485,
+          0.456,
+          0.406
+        ],
+        "std": [
+          0.229,
+          0.224,
+          0.225
+        ]
+      },
+      "threshold": 0.42880725860595703,
+      "epoch": 11,
+      "seed": 42,
+      "training_samples": 8000,
+      "dataset_provenance": {
+        "dataset": "deathtrooper/glaucoma-dataset-eyepacs-airogs-light-v2/versions/4",
+        "source_url": "https://www.kaggle.com/datasets/deathtrooper/glaucoma-dataset-eyepacs-airogs-light-v2/versions/4",
+        "counts": {
+          "train/non_referable": 4000,
+          "train/referable": 4000,
+          "val/non_referable": 385,
+          "val/referable": 385,
+          "test/non_referable": 385,
+          "test/referable": 385
+        },
+        "split_policy": "Preserve the dataset publisher's train/validation/test splits.",
+        "patient_separation": "Not independently verified. File-hash disjointness does not establish patient disjointness.",
+        "label_mapping": {
+          "NRG": "non_referable",
+          "RG": "referable"
+        }
+      },
+      "validation_metrics": {
+        "samples": 770,
+        "true_positive": 339,
+        "true_negative": 271,
+        "false_positive": 114,
+        "false_negative": 46,
+        "sensitivity": 0.8805194805194805,
+        "specificity": 0.7038961038961039,
+        "accuracy": 0.7922077922077922
+      },
+      "validation_loss": 0.4319758242600924,
+      "status": "research_only_unvalidated",
+      "stage": "eyepacs",
+      "checkpoint": "01_eyepacs.pth",
+      "checkpoint_sha256": "c68e06ad913da75f5b0630be5ea81d8335fc3b62cf7362fdc6d773e39fe64750",
+      "reused_existing_colab_stage": true,
+      "test_metrics": {
+        "eyepacs": {
+          "samples": 770,
+          "true_positive": 353,
+          "true_negative": 251,
+          "false_positive": 134,
+          "false_negative": 32,
+          "sensitivity": 0.9168831168831169,
+          "specificity": 0.6519480519480519,
+          "accuracy": 0.7844155844155845
+        },
+        "acrima": {
+          "samples": 105,
+          "true_positive": 4,
+          "true_negative": 46,
+          "false_positive": 0,
+          "false_negative": 55,
+          "sensitivity": 0.06779661016949153,
+          "specificity": 1.0,
+          "accuracy": 0.47619047619047616
+        },
+        "papila": {
+          "samples": 62,
+          "true_positive": 5,
+          "true_negative": 42,
+          "false_positive": 6,
+          "false_negative": 9,
+          "sensitivity": 0.35714285714285715,
+          "specificity": 0.875,
+          "accuracy": 0.7580645161290323
+        }
+      }
+    },
+    {
+      "architecture": "efficientnet_b0",
+      "classes": [
+        "non_referable",
+        "referable"
+      ],
+      "preprocessing": {
+        "size": [
+          224,
+          224
+        ],
+        "mean": [
+          0.485,
+          0.456,
+          0.406
+        ],
+        "std": [
+          0.229,
+          0.224,
+          0.225
+        ]
+      },
+      "threshold": 0.46582722663879395,
+      "epoch": 12,
+      "seed": 20261107,
+      "training_samples": 989,
+      "dataset_provenance": {
+        "eyepacs": "deathtrooper/glaucoma-dataset-eyepacs-airogs-light-v2/versions/4",
+        "acrima": "orvile/acrima-glaucoma-assessment-using-fundus-images/versions/1"
+      },
+      "validation_metrics": {
+        "eyepacs": {
+          "samples": 770,
+          "true_positive": 307,
+          "true_negative": 300,
+          "false_positive": 85,
+          "false_negative": 78,
+          "sensitivity": 0.7974025974025974,
+          "specificity": 0.7792207792207793,
+          "accuracy": 0.7883116883116883
+        },
+        "acrima": {
+          "samples": 105,
+          "true_positive": 57,
+          "true_negative": 38,
+          "false_positive": 8,
+          "false_negative": 2,
+          "sensitivity": 0.9661016949152542,
+          "specificity": 0.8260869565217391,
+          "accuracy": 0.9047619047619048
+        }
+      },
+      "validation_loss": 0.3594615310430527,
+      "status": "research_only_unvalidated",
+      "parent_checkpoint_sha256": "c68e06ad913da75f5b0630be5ea81d8335fc3b62cf7362fdc6d773e39fe64750",
+      "stage": "acrima",
+      "training_domains": [
+        "eyepacs",
+        "acrima"
+      ],
+      "training_domain_counts": {
+        "acrima": 495,
+        "eyepacs": 494
+      },
+      "label_semantics": "mixed_dataset_binary_research_labels",
+      "label_note": "EyePACS referral labels differ from ACRIMA/PAPILA glaucoma labels; scores are not clinical referral risks.",
+      "checkpoint": "02_acrima.pth",
+      "checkpoint_sha256": "9f2df71fba73ec13fd2a6eb0eaab34b8cf186ebd9f71eb741e3350cbe233aae1",
+      "epochs_run": 12,
+      "test_metrics": {
+        "eyepacs": {
+          "samples": 770,
+          "true_positive": 317,
+          "true_negative": 291,
+          "false_positive": 94,
+          "false_negative": 68,
+          "sensitivity": 0.8233766233766234,
+          "specificity": 0.7558441558441559,
+          "accuracy": 0.7896103896103897
+        },
+        "acrima": {
+          "samples": 105,
+          "true_positive": 54,
+          "true_negative": 36,
+          "false_positive": 10,
+          "false_negative": 5,
+          "sensitivity": 0.9152542372881356,
+          "specificity": 0.782608695652174,
+          "accuracy": 0.8571428571428571
+        },
+        "papila": {
+          "samples": 62,
+          "true_positive": 10,
+          "true_negative": 33,
+          "false_positive": 15,
+          "false_negative": 4,
+          "sensitivity": 0.7142857142857143,
+          "specificity": 0.6875,
+          "accuracy": 0.6935483870967742
+        }
+      }
+    },
+    {
+      "architecture": "efficientnet_b0",
+      "classes": [
+        "non_referable",
+        "referable"
+      ],
+      "preprocessing": {
+        "size": [
+          224,
+          224
+        ],
+        "mean": [
+          0.485,
+          0.456,
+          0.406
+        ],
+        "std": [
+          0.229,
+          0.224,
+          0.225
+        ]
+      },
+      "threshold": 0.18908929824829102,
+      "epoch": 12,
+      "seed": 20261107,
+      "training_samples": 592,
+      "dataset_provenance": {
+        "eyepacs": "deathtrooper/glaucoma-dataset-eyepacs-airogs-light-v2/versions/4",
+        "acrima": "orvile/acrima-glaucoma-assessment-using-fundus-images/versions/1",
+        "papila": "orvile/papila-retinal-fundus-images/versions/1"
+      },
+      "validation_metrics": {
+        "eyepacs": {
+          "samples": 770,
+          "true_positive": 351,
+          "true_negative": 204,
+          "false_positive": 181,
+          "false_negative": 34,
+          "sensitivity": 0.9116883116883117,
+          "specificity": 0.5298701298701298,
+          "accuracy": 0.7207792207792207
+        },
+        "acrima": {
+          "samples": 105,
+          "true_positive": 59,
+          "true_negative": 27,
+          "false_positive": 19,
+          "false_negative": 0,
+          "sensitivity": 1.0,
+          "specificity": 0.5869565217391305,
+          "accuracy": 0.819047619047619
+        },
+        "papila": {
+          "samples": 62,
+          "true_positive": 11,
+          "true_negative": 40,
+          "false_positive": 8,
+          "false_negative": 3,
+          "sensitivity": 0.7857142857142857,
+          "specificity": 0.8333333333333334,
+          "accuracy": 0.8225806451612904
+        }
+      },
+      "validation_loss": 0.380412220954895,
+      "status": "research_only_unvalidated",
+      "parent_checkpoint_sha256": "9f2df71fba73ec13fd2a6eb0eaab34b8cf186ebd9f71eb741e3350cbe233aae1",
+      "stage": "papila",
+      "training_domains": [
+        "eyepacs",
+        "acrima",
+        "papila"
+      ],
+      "training_domain_counts": {
+        "papila": 296,
+        "eyepacs": 148,
+        "acrima": 148
+      },
+      "label_semantics": "mixed_dataset_binary_research_labels",
+      "label_note": "EyePACS referral labels differ from ACRIMA/PAPILA glaucoma labels; scores are not clinical referral risks.",
+      "checkpoint": "03_papila.pth",
+      "checkpoint_sha256": "f2daa2899f32ec27b3814a8e550d0a49a9612bf067addd4d79bbd75a47260dc0",
+      "epochs_run": 12,
+      "test_metrics": {
+        "eyepacs": {
+          "samples": 770,
+          "true_positive": 365,
+          "true_negative": 179,
+          "false_positive": 206,
+          "false_negative": 20,
+          "sensitivity": 0.948051948051948,
+          "specificity": 0.4649350649350649,
+          "accuracy": 0.7064935064935065
+        },
+        "acrima": {
+          "samples": 105,
+          "true_positive": 57,
+          "true_negative": 32,
+          "false_positive": 14,
+          "false_negative": 2,
+          "sensitivity": 0.9661016949152542,
+          "specificity": 0.6956521739130435,
+          "accuracy": 0.8476190476190476
+        },
+        "papila": {
+          "samples": 62,
+          "true_positive": 12,
+          "true_negative": 31,
+          "false_positive": 17,
+          "false_negative": 2,
+          "sensitivity": 0.8571428571428571,
+          "specificity": 0.6458333333333334,
+          "accuracy": 0.6935483870967742
+        }
+      }
+    }
+  ],
+  "label_semantics": "Dataset-specific binary labels; not interchangeable clinical diagnoses.",
+  "test_policy": "All checkpoints locked before test evaluation. EyePACS test was inspected in the earlier baseline run; new ACRIMA/PAPILA test splits were withheld throughout adaptation.",
+  "split_limitations": "PAPILA patient-group split; ACRIMA image split (patient IDs unavailable); EyePACS publisher splits, patient separation unverified. Byte/pixel hashes reject exact duplicates, not all near-duplicates.",
+  "method": "Frozen ImageNet EfficientNet-B0; sequential head adaptation with bounded replay. Macro source validation loss chooses epochs; equal-source validation sensitivity >=88% chooses thresholds.",
+  "status": "research_only_unvalidated"
+}

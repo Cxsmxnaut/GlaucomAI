@@ -10,6 +10,10 @@
 
 The sequential notebook continues the same model through **EyePACS → ACRIMA → PAPILA**, saving each stage and replaying earlier training examples to reduce forgetting. All three Kaggle listings scored 10/10 for usability when checked on November 7, 2026. This score measures dataset packaging, not clinical reliability. See [dataset selection, original sources, terms, and split rules](DATASETS.md). Mixed dataset labels are experimental and are not shown as referral scores in the original demo.
 
+**Healthcare development records:** [reusable Markdown playbook](docs/healthcare/README.md), including the actual experiment journal, risk register, data governance, statistical evaluation, clinical-study draft, and release evidence gaps. Current status remains research-only.
+
+The completed Colab sequence and audit are recorded in [sequential results](experiments/sequential_colab_t4.json), [statistical/negative-control audit](experiments/clinical_audit_colab_t4.json), and [input-guard verification](experiments/input_guard_colab_t4.json). The final stage caught 365/385 EyePACS positives, 57/59 ACRIMA positives, and 12/14 PAPILA positives, with specificities of 46.5%, 69.6%, and 64.6%. It was not promoted over the published demo: endpoints differ, false alarms remain substantial, and clinical validation is absent. The inference entry point and dashboard now reject exactly uniform images before producing a score; this narrow check does not establish retinal suitability.
+
 GlaucomAI is an AI + Health hackathon research prototype. It uses an ImageNet-pretrained EfficientNet-B0 with a two-class head to learn **non-referable vs. referable glaucoma** from retinal photographs. It includes training, held-out evaluation, a side-by-side image/results dashboard, and export of trained artifacts.
 
 **Not a diagnosis.** This prototype is not clinically validated. Model scores are not calibrated disease probabilities. Non-referable does not mean healthy. A qualified eye-care professional must interpret retinal findings. The classifier does not measure optic disc cupping or cup-to-disc ratio.
@@ -107,6 +111,10 @@ The source must contain `train/`, `validation/`, and `test/`, each containing `N
 | --- | --- |
 | `notebooks/GlaucomAI_Colab.ipynb` | Self-contained training, evaluation, upload demo, export |
 | `notebooks/GlaucomAI_Demo.ipynb` | Download the verified trained checkpoint and try uploads |
+| `notebooks/GlaucomAI_Sequential.ipynb` | Colab GPU training through three datasets with replay and per-stage tests |
+| `sequential_train.py` | Checkpoint continuation, replay, source-balanced validation, locked test evaluation |
+| `glaucoma/multidata.py` | ACRIMA/PAPILA label adapters, patient grouping, duplicate audit |
+| `DATASETS.md` | Dataset ratings, original sources, terms, and experiment rules |
 | `prepare_data.py` | Pinned Kaggle download, explicit label mapping, split validation |
 | `train.py` | Frozen-backbone transfer learning and checkpoint selection |
 | `evaluate.py` | Held-out metrics and CPU latency |
@@ -123,12 +131,15 @@ Uploaded images are not written to disk by the dashboard. They remain in session
 ```bash
 python -m pip install -r requirements-dev.txt
 python scripts/build_notebook.py
+python scripts/build_sequential_notebook.py
 ruff check .
 pytest -q
 python scripts/build_notebook.py --check
+python scripts/build_sequential_notebook.py --check
+python scripts/check_healthcare_evidence.py
 ```
 
-Rebuild the notebook whenever its bundled Python files change. GitHub Actions checks that generated notebook code matches the tested source. Tests use synthetic images and untrained test checkpoints; they do not download patient data or claim model accuracy. There is no Graphify graph or managed index configured in this repository.
+Run both notebook generators whenever bundled Python files change. GitHub Actions checks that generated notebook code matches the tested source. Tests use synthetic images and untrained test checkpoints; they do not download patient data or claim model accuracy. There is no Graphify graph or managed index configured in this repository.
 
 ## Technical references
 

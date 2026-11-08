@@ -65,7 +65,9 @@ def test_widget_upload_analysis_invalid_replacement_and_clear(monkeypatch):
     dashboard = notebook_ui.display_assistant("test-only.pth")
     assert dashboard["analyze"].disabled
     buffer = BytesIO()
-    Image.new("RGB", (50, 50)).save(buffer, format="PNG")
+    image = Image.new("RGB", (50, 50))
+    image.putpixel((0, 0), (200, 100, 80))
+    image.save(buffer, format="PNG")
 
     def upload(content):
         uploader = dashboard["uploader"]
@@ -82,6 +84,11 @@ def test_widget_upload_analysis_invalid_replacement_and_clear(monkeypatch):
     assert not dashboard["analyze"].disabled
     dashboard["analyze"].click()
     assert any("88.1" in getattr(value, "data", "") for value in rendered)
+    uniform = BytesIO()
+    Image.new("RGB", (50, 50), "white").save(uniform, format="PNG")
+    upload(uniform.getvalue())
+    assert dashboard["analyze"].disabled
+    assert any("No score was produced" in getattr(value, "data", "") for value in rendered)
     upload(b"invalid replacement")
     assert dashboard["analyze"].disabled
     dashboard["reset"].click()
