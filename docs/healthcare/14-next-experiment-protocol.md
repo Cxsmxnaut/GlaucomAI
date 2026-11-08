@@ -1,6 +1,6 @@
 # P2: separate task outputs and limited backbone adaptation
 
-Protocol revision: P2.0, 2026-11-07. Status: **specified before implementation/training; not yet run**. Research only. This is a model-development hypothesis, not a clinical-study protocol or approval.
+Protocol revision: P2.0, 2026-11-07. Status: **preregistered at commit de48812 before implementation; original Colab run now in progress**. Research only. This is a model-development hypothesis, not a clinical-study protocol or approval. The fresh-reproduction initialization note was added afterward for reproducibility; it does not change the initialization used by the original run.
 
 ## Problem and hypothesis
 
@@ -17,6 +17,7 @@ All three existing test partitions are now inspected **development benchmarks**.
 ## Training specification
 
 - Start from the verified Colab EyePACS checkpoint `c68e06ad913da75f5b0630be5ea81d8335fc3b62cf7362fdc6d773e39fe64750`. Preserve its referral head.
+- A fresh-runtime reproduction first repeats the original EyePACS initialization recipe (12 epochs, seed 42, batch 32, frozen ImageNet backbone) in Colab and records its actual checkpoint hash. This is recorded as a new reproduction, not claimed to be byte-identical to the original artifact.
 - Add separate ACRIMA and PAPILA two-class heads, initialized with a fixed seed `20261108`. Use a distinct architecture/checkpoint schema; do not load through the original referral dashboard.
 - Freeze EfficientNet feature blocks `0..6`. Cache only their outputs. Blocks `7..8` and active classifier heads train; do not cache outputs from these trainable blocks. Verify frozen-prefix identity in the evidence.
 - Keep all batch-normalization running statistics frozen. Use deterministic 224×224 preprocessing for direct comparability; no unreviewed augmentation in this first comparison.

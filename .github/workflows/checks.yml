@@ -17,5 +17,6 @@ jobs:
       - run: ruff check .
       - run: python scripts/build_notebook.py --check
       - run: python scripts/build_sequential_notebook.py --check
+      - run: python scripts/build_multitask_notebook.py --check
       - run: python scripts/check_healthcare_evidence.py
       - run: pytest -q

@@ -22,6 +22,17 @@ def test_notebook_is_valid_clean_and_matches_source():
                 ast.parse("".join(cell["source"]))
 
 
+def test_separate_task_notebook_is_clean_valid_and_matches_source():
+    path = ROOT / "notebooks/GlaucomAI_Separate_Tasks.ipynb"
+    nbformat.validate(nbformat.read(path, as_version=4))
+    notebook = json.loads(path.read_text())
+    assert notebook == runpy.run_path(str(ROOT / "scripts/build_multitask_notebook.py"))["build"]()
+    for cell in notebook["cells"]:
+        if cell["cell_type"] == "code":
+            assert cell["outputs"] == [] and cell["execution_count"] is None
+            ast.parse("".join(cell["source"]))
+
+
 def test_ui_shows_real_scores_and_label_limitations():
     from PIL import Image
     from glaucoma.notebook_ui import result_html

@@ -12,6 +12,8 @@ The sequential notebook continues the same model through **EyePACS â†’ ACRIMA â†
 
 **Healthcare development records:** [reusable Markdown playbook](docs/healthcare/README.md), including the actual experiment journal, risk register, data governance, statistical evaluation, clinical-study draft, and release evidence gaps. Current status remains research-only.
 
+**P2 research comparison:** [Separate-task training in Colab](https://colab.research.google.com/github/Cxsmxnaut/GlaucomAI/blob/main/notebooks/GlaucomAI_Separate_Tasks.ipynb) keeps the three label meanings in distinct heads and adapts the final feature blocks. It includes a fresh Colab initialization workflow. See the [protocol written before execution](docs/healthcare/14-next-experiment-protocol.md). Existing test partitions are development benchmarks for this comparison, not fresh clinical confirmation.
+
 The completed Colab sequence and audit are recorded in [sequential results](experiments/sequential_colab_t4.json), [statistical/negative-control audit](experiments/clinical_audit_colab_t4.json), and [input-guard verification](experiments/input_guard_colab_t4.json). The final stage caught 365/385 EyePACS positives, 57/59 ACRIMA positives, and 12/14 PAPILA positives, with specificities of 46.5%, 69.6%, and 64.6%. It was not promoted over the published demo: endpoints differ, false alarms remain substantial, and clinical validation is absent. The inference entry point and dashboard now reject exactly uniform images before producing a score; this narrow check does not establish retinal suitability.
 
 GlaucomAI is an AI + Health hackathon research prototype. It uses an ImageNet-pretrained EfficientNet-B0 with a two-class head to learn **non-referable vs. referable glaucoma** from retinal photographs. It includes training, held-out evaluation, a side-by-side image/results dashboard, and export of trained artifacts.
@@ -132,14 +134,16 @@ Uploaded images are not written to disk by the dashboard. They remain in session
 python -m pip install -r requirements-dev.txt
 python scripts/build_notebook.py
 python scripts/build_sequential_notebook.py
+python scripts/build_multitask_notebook.py
 ruff check .
 pytest -q
 python scripts/build_notebook.py --check
 python scripts/build_sequential_notebook.py --check
+python scripts/build_multitask_notebook.py --check
 python scripts/check_healthcare_evidence.py
 ```
 
-Run both notebook generators whenever bundled Python files change. GitHub Actions checks that generated notebook code matches the tested source. Tests use synthetic images and untrained test checkpoints; they do not download patient data or claim model accuracy. There is no Graphify graph or managed index configured in this repository.
+Run all notebook generators whenever bundled Python files change. GitHub Actions checks that generated notebook code matches the tested source. Tests use synthetic images and untrained test checkpoints; they do not download patient data or claim model accuracy. There is no Graphify graph or managed index configured in this repository.
 
 ## Technical references
 
